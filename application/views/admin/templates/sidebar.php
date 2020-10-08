@@ -43,7 +43,7 @@
 			</div>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="<?php echo site_url('Admin/customer');?>">
 					<i class="fas fa-fw fa-utensils"></i>
 					<span>Customer</span></a>
 			</li>
@@ -55,9 +55,9 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="<?php echo site_url('Admin/package');?>">
 					<i class="fas fa-fw fa-utensils"></i>
-					<span>Product</span></a>
+					<span>Package</span></a>
 			</li>
 
 			<li class="nav-item">

@@ -3,12 +3,12 @@
 
 			<!-- Page Heading -->
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h2 mb-0 text-gray-800">Outlet</h1>
+				<h1 class="h2 mb-0 text-gray-800">Customer</h1>
 			</div>
 
 			<div>
 				<button class="btn btn-primary mb-3" type="button" data-toggle="modal"
-					href="#exampleModal" onclick="submit('add')">Add Outlet</button>
+					href="#exampleModal" onclick="submit('add')">Add Customer</button>
 			</div>
 			<br>
 			<table id="table" class="table table-striped table-bordered">
@@ -17,6 +17,7 @@
 						<th scope="col">No</th>
 						<th scope="col">Name</th>
 						<th scope="col">Address</th>
+						<th scope="col">Gender</th>
 						<th scope="col">Phone</th>
 						<th scope="col">Action</th>
 					</tr>
@@ -42,7 +43,7 @@
 				function getData() {
 					$.ajax({
 						type: 'POST',
-						url: '<?php echo base_url(). "Outlet/outlet_show" ?>',
+						url: '<?php echo base_url(). "Customer/customer_show" ?>',
 						dataType: 'Json',
 						success: function (data) {
 		
@@ -52,6 +53,7 @@
 									'<td>' + (i+1) + '</td>' +
 									'<td>' + data[i].name + '</td>' +
 									'<td>' + data[i].address + '</td>' +
+									'<td>' + data[i].gender + '</td>' +
 									'<td>' + data[i].phone + '</td>' +
 									'<td><a href="#exampleModal" data-toggle="modal" class="btn btn-success" onclick="submit('+ data[i].id +')">Edit</a>'+
 									' <a class="btn btn-danger" onclick="deleteData('+ data[i].id +')" style="color:white;" >Delete</a></td>' +
@@ -66,12 +68,13 @@
                 function addData(){
                     var name = $("[name = 'name']").val();
                     var address = $("[name = 'address']").val();
+                    var gender = $("[name = 'gender']").val();
                     var phone = $("[name = 'phone']").val();
 
                     $.ajax({
                         type : 'POST',
-                        data : 'name='+name+'&address='+address+'&phone='+phone,
-                        url : '<?php echo base_url(). "Outlet/outlet_save" ?>',
+                        data : 'name='+name+'&address='+address+'&gender='+gender+'&phone='+phone,
+                        url : '<?php echo base_url(). "Customer/customer_save" ?>',
                         dataType : 'Json',
                         success : function(result){
                             // console.log(result);
@@ -101,13 +104,14 @@
 						$.ajax({
 							type : 'POST',
 							data : 'id=' + x,
-							url : '<?php echo base_url(). "Outlet/outlet_get" ?>',
+							url : '<?php echo base_url(). "Customer/customer_get" ?>',
 							dataType : 'Json',
 							success : function(result){
 								// console.log(result);
 								$("[name = 'id']").val(result[0].id);
 								$("[name = 'name']").val(result[0].name);
 								$("[name = 'address']").val(result[0].address);
+								$("[name = 'gender']").val(result[0].gender);
 								$("[name = 'phone']").val(result[0].phone);
 							}
 
@@ -120,12 +124,13 @@
 					var id = $("[name = 'id']").val();
 					var name = $("[name = 'name']").val();
                     var address = $("[name = 'address']").val();
+                    var gender = $("[name = 'gender']").val();
                     var phone = $("[name = 'phone']").val();
 
 					$.ajax({
 						type : 'POST',
-                        data : 'id='+id+'&name='+name+'&address='+address+'&phone='+phone,
-                        url : '<?php echo base_url(). "Outlet/outlet_edit" ?>',
+                        data : 'id='+id+'&name='+name+'&address='+address+'&gender='+gender+'&phone='+phone,
+                        url : '<?php echo base_url(). "Customer/customer_edit" ?>',
                         dataType : 'Json',
 						success : function(result){
                             // console.log(result);
@@ -151,7 +156,7 @@
 						$.ajax({
 							type : 'POST',
 							data : 'id=' +id,
-							url : '<?php echo base_url(). "Outlet/outlet_delete" ?>',
+							url : '<?php echo base_url(). "Customer/customer_delete" ?>',
 							success : function(){
 								getData();
 							}
@@ -182,6 +187,13 @@
 											</div>
 											<div class="form-group">
 												<input type="text" name="address" class="form-control" placeholder="Address">
+											</div>
+											<div class="form-group">
+                                            <select name="gender" id="gender" class="form-control" required>
+                                                    <option selected disabled>Select Gender...</option>
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
+												</select>
 											</div>
  											<div class="form-group">
 												<input type="number" name="phone" class="form-control" placeholder="Phone Number">

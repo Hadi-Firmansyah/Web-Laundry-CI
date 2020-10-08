@@ -109,5 +109,29 @@ Class model_laundry extends CI_Model{
         $this->db->delete($table);
     }
 
+    //Customer
+    public function get_customers(){
+        $data = $this->db->get('tb_member');
+        return $data->result();
+    }
+    public function get_customer($table){
+        return $this->db->get($table);
+    }
+    public function save_customer($data,$table){
+        $this->db->insert($table, $data);
+    }
+    public function get_data_customer($table, $where){
+        return $this->db->get_where($table, $where);
+    }
+    public function edit_customer($where, $data, $table){
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
+    public function delete_customer($where, $table){
+        $this->db->where($where);
+        $this->db->delete($table);
+    }
+
+
 }
 ?>
