@@ -68,6 +68,9 @@ class Admin extends CI_Controller{
             redirect('Auth');
         }
         $data['title'] = "Package";
+        // $data['g_user'] = $this->model_laundry->get_user();
+        // $data['c_user'] = $this->model_laundry->count_user();
+        // $data['get_outlet'] = $this->model_laundry->get_outlets();  
         $this->load->view('admin/templates/header',$data);
         $this->load->view('admin/templates/sidebar',$data);
         $this->load->view('admin/templates/topbar',$data);

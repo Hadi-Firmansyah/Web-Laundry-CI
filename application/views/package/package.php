@@ -3,22 +3,22 @@
 
 			<!-- Page Heading -->
 			<div class="d-sm-flex align-items-center justify-content-between mb-4">
-				<h1 class="h2 mb-0 text-gray-800">Customer</h1>
+				<h1 class="h2 mb-0 text-gray-800">Package</h1>
 			</div>
 
 			<div>
 				<button class="btn btn-primary mb-3" type="button" data-toggle="modal"
-					href="#exampleModal" onclick="submit('add')">Add Customer</button>
+					href="#exampleModal" onclick="submit('add')">Add Package</button>
 			</div>
 			<br>
 			<table id="table" class="table table-striped table-bordered">
 				<thead align="center" class="bg-primary" style="color:white;">
 					<tr>
 						<th scope="col">No</th>
-						<th scope="col">Name</th>
-						<th scope="col">Address</th>
-						<th scope="col">Gender</th>
-						<th scope="col">Phone</th>
+						<th scope="col">ID Outlet</th>
+						<th scope="col">Type</th>
+						<th scope="col">Package Name</th>
+						<th scope="col">Price</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -43,7 +43,7 @@
 				function getData() {
 					$.ajax({
 						type: 'POST',
-						url: '<?php echo base_url(). "Customer/customer_show" ?>',
+						url: '<?php echo base_url(). "Package/package_show" ?>',
 						dataType: 'Json',
 						success: function (data) {
 		
@@ -51,10 +51,10 @@
 							for (var i = 0; i < data.length; i++) {
 								row += '<tr>' +
 									'<td>' + (i+1) + '</td>' +
+									'<td>' + data[i].id_outlet + '</td>' +
+									'<td>' + data[i].type + '</td>' +
 									'<td>' + data[i].name + '</td>' +
-									'<td>' + data[i].address + '</td>' +
-									'<td>' + data[i].gender + '</td>' +
-									'<td>' + data[i].phone + '</td>' +
+									'<td>' + data[i].price + '</td>' +
 									'<td><a href="#exampleModal" data-toggle="modal" class="btn btn-success" onclick="submit('+ data[i].id +')">Edit</a>'+
 									' <a class="btn btn-danger" onclick="deleteData('+ data[i].id +')" style="color:white;" >Delete</a></td>' +
 									'</tr>';
@@ -66,15 +66,15 @@
                 }
                 
                 function addData(){
+                    var id_outlet = $("[name = 'id_outlet']").val();
+                    var type = $("[name = 'type']").val();
                     var name = $("[name = 'name']").val();
-                    var address = $("[name = 'address']").val();
-                    var gender = $("[name = 'gender']").val();
-                    var phone = $("[name = 'phone']").val();
+                    var price = $("[name = 'price']").val();
 
                     $.ajax({
                         type : 'POST',
-                        data : 'name='+name+'&address='+address+'&gender='+gender+'&phone='+phone,
-                        url : '<?php echo base_url(). "Customer/customer_save" ?>',
+                        data : 'id_outlet='+id_outlet+'&type='+type+'&name='+name+'&price='+price,
+                        url : '<?php echo base_url(). "Package/package_save" ?>',
                         dataType : 'Json',
                         success : function(result){
                             // console.log(result);
@@ -84,9 +84,10 @@
 								$('#exampleModal').modal('hide');
 								getData();
 
+								$("[name = 'id_outlet']").val('');
+								$("[name = 'type']").val('');
 								$("[name = 'name']").val('');
-								$("[name = 'address']").val('');
-								$("[name = 'phone']").val('');
+								$("[name = 'price']").val('');
 
 							}	
                         }
@@ -104,15 +105,15 @@
 						$.ajax({
 							type : 'POST',
 							data : 'id=' + x,
-							url : '<?php echo base_url(). "Customer/customer_get" ?>',
+							url : '<?php echo base_url(). "Package/package_get" ?>',
 							dataType : 'Json',
 							success : function(result){
 								// console.log(result);
 								$("[name = 'id']").val(result[0].id);
+								$("[name = 'id_outlet']").val(result[0].id_outlet);
+								$("[name = 'type']").val(result[0].type);
 								$("[name = 'name']").val(result[0].name);
-								$("[name = 'address']").val(result[0].address);
-								$("[name = 'gender']").val(result[0].gender);
-								$("[name = 'phone']").val(result[0].phone);
+								$("[name = 'price']").val(result[0].price);
 							}
 
 						});
@@ -122,15 +123,15 @@
 				function editData(){
 
 					var id = $("[name = 'id']").val();
-					var name = $("[name = 'name']").val();
-                    var address = $("[name = 'address']").val();
-                    var gender = $("[name = 'gender']").val();
-                    var phone = $("[name = 'phone']").val();
+					var id_outlet = $("[name = 'id_outlet']").val();
+					var type = $("[name = 'type']").val();
+                    var name = $("[name = 'name']").val();
+                    var price = $("[name = 'price]").val();
 
 					$.ajax({
 						type : 'POST',
-                        data : 'id='+id+'&name='+name+'&address='+address+'&gender='+gender+'&phone='+phone,
-                        url : '<?php echo base_url(). "Customer/customer_edit" ?>',
+                        data : 'id='+id+'&id_outlet='+id_outlet+'&type='+type+'&name='+name+'&price='+price,
+                        url : '<?php echo base_url(). "Package/package_edit" ?>',
                         dataType : 'Json',
 						success : function(result){
                             // console.log(result);
@@ -139,10 +140,6 @@
 							if(result.message == ""){
 								$('#exampleModal').modal('hide');
 								getData();
-
-								// $("[name = 'name']").val('');
-								// $("[name = 'address']").val('');
-								// $("[name = 'phone']").val('');
 
 							}	
                         }
@@ -156,7 +153,7 @@
 						$.ajax({
 							type : 'POST',
 							data : 'id=' +id,
-							url : '<?php echo base_url(). "Customer/customer_delete" ?>',
+							url : '<?php echo base_url(). "Package/package_delete" ?>',
 							success : function(){
 								getData();
 							}
@@ -175,7 +172,7 @@
 					<div class="modal-content">
 
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Outlet</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Package</h5>
 						</div>
 
 						<div class="modal-body">
@@ -183,20 +180,22 @@
 										<form>
 											<input type="hidden" name="id"  value="">
 											<div class="form-group">
-												<input type="text" name="name" class="form-control" placeholder="Name" autocomplete="off">
+												<input type="hidden" name="id_outlet" class="form-control"  placeholder="ID Outlet" value="<?php echo $this->session->userdata('id_outlet');?>">
 											</div>
 											<div class="form-group">
-												<input type="text" name="address" class="form-control" placeholder="Address">
-											</div>
-											<div class="form-group">
-                                            <select name="gender" id="gender" class="form-control" required>
-                                                    <option selected disabled>Select Gender...</option>
-													<option value="Male">Male</option>
-													<option value="Female">Female</option>
+                                            <select name="type" id="type" class="form-control" required>
+                                                    <option selected disabled>Select Type...</option>
+													<option value="Kilos">Kilos</option>
+													<option value="Blanket">Blanket</option>
+													<option value="Bed Cover">Bed Cover</option>
+													<option value="T-Shirt">T-Shirt</option>
 												</select>
 											</div>
  											<div class="form-group">
-												<input type="number" name="phone" class="form-control" placeholder="Phone Number">
+												<input type="text" name="name" class="form-control" placeholder="Package Name">
+											</div>
+ 											<div class="form-group">
+												<input type="number" name="price" class="form-control" placeholder="Price">
 											</div>
 
 											<div class="form-group" align="center">

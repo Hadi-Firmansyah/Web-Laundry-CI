@@ -132,6 +132,29 @@ Class model_laundry extends CI_Model{
         $this->db->delete($table);
     }
 
+    //Package
+    public function get_packages(){
+        $data = $this->db->get('tb_package');
+        return $data->result();
+    }
+    public function get_package($table){
+        return $this->db->get($table);
+    }
+    public function save_package($data,$table){
+        $this->db->insert($table, $data);
+    }
+    public function get_data_package($table, $where){
+        return $this->db->get_where($table, $where);
+    }
+    public function edit_package($where, $data, $table){
+        $this->db->where($where);
+        $this->db->update($table, $data);
+    }
+    public function delete_package($where, $table){
+        $this->db->where($where);
+        $this->db->delete($table);
+    }
+
 
 }
 ?>

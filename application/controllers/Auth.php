@@ -48,7 +48,9 @@ class Auth extends CI_Controller {
                     'username' => $dataz->username,
                     'role' => $dataz->role,
                     'image' => $dataz->image,
+                    'id_outlet' => $dataz->id_outlet,
                     'status_log' => $dataz->status_log,
+
                 );
             }
 

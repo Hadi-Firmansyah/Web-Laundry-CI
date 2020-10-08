@@ -5,8 +5,8 @@ class Customer extends CI_Controller{
         $this->load->model('model_laundry');
     }
     function customer_show(){
-        $dataOutlet = $this->model_laundry->get_customer('tb_member')->result();
-        echo json_encode($dataOutlet);
+        $dataCustomer = $this->model_laundry->get_customer('tb_member')->result();
+        echo json_encode($dataCustomer);
     }
     function customer_save(){
         $name = $this->input->post('name');
