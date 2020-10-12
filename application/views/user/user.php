@@ -15,7 +15,7 @@
 					<button class="btn btn-success mb-3" style="width:15%;" >Generate XLS</button></a>
 			</div>
 			<br>
-			<div class="card">
+		<div class="card">
 			<div class="card-body">
 			<table id="table" class="table table-bordered">
 				<thead align="center" class="bg-primary" style="color:white;">

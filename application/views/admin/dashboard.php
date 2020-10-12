@@ -19,7 +19,7 @@
 									<div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
 								</div>
 								<div class="col-auto">
-									<i class="fas fa-utensils fa-2x text-gray-300"></i>
+									<i class="fas fa-user fa-2x text-gray-300"></i>
 								</div>
 							</div>
 						</div>
@@ -97,7 +97,7 @@
 			<div class="card mb-3 bg-primary" style="max-width: 100%;">
 				<div class="row no-gutters">
 					<!-- <div class="col-md-4">
-						<img src="<?php echo $this->session->userdata('image');?>" class="card-img">
+						<img src="<?php echo $this->session->userdata('image');?>" alt="User Image">
 					</div> -->
 					<div class="col-md-12">
 						<div class="card-body" style="color:white;">
