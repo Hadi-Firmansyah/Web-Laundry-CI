@@ -15,7 +15,9 @@
 					<button class="btn btn-success mb-3" style="width:15%;" >Generate XLS</button></a>
 			</div>
 			<br>
-			<table id="table" class="table table-striped table-bordered">
+			<div class="card">
+			<div class="card-body">
+			<table id="table" class="table table-bordered">
 				<thead align="center" class="bg-primary" style="color:white;">
 					<tr>
 						<th scope="col">ID</th>
@@ -64,6 +66,8 @@
 					<?php } ?>
 				</tbody>
 			</table>
+			</div>
+		</div>
 <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/');?>DataTables/datatables.min.css"/> 
 <script type="text/javascript" src="<?php echo base_url('assets/');?>DataTables/datatables.min.js"></script> -->
 

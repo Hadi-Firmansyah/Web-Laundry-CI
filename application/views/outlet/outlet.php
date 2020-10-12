@@ -11,7 +11,9 @@
 					href="#exampleModal" onclick="submit('add')">Add Outlet</button>
 			</div>
 			<br>
-			<table id="table" class="table table-striped table-bordered">
+			<div class="card">
+			<div class="card-body">
+			<table id="table" class="table table-bordered">
 				<thead align="center" class="bg-primary" style="color:white;">
 					<tr>
 						<th scope="col">No</th>
@@ -26,6 +28,8 @@
 
 				</tbody>
 			</table>
+			</div>
+			</div>
 
 			<script type="text/javascript">
 				$(document).ready(function () {
