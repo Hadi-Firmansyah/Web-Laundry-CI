@@ -11,15 +11,15 @@
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-code"></i>
 				</div>
-				<div class="sidebar-brand-text mx-3">Administrator</div>
+				<div class="sidebar-brand-text mx-3">Cashier</div>
 			</a>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Heading -->
+			<!-- Heading
 			<div class="sidebar-heading">
-				Administrator
+				Cashier
 			</div>
 
 			<li class="nav-item">
@@ -32,10 +32,10 @@
 				<a class="nav-link" href="<?php echo site_url('Admin/user');?>">
 					<i class="fas fa-fw fa-user"></i>
 					<span>User</span></a>
-			</li>
+			</li> -->
 
 			<!-- Divider -->
-			<hr class="sidebar-divider">
+			<!-- <hr class="sidebar-divider"> -->
 
 			<!-- Heading -->
 			<div class="sidebar-heading">
@@ -48,11 +48,11 @@
 					<span>Customer</span></a>
 			</li>
 
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('Admin/outlet');?>">
 					<i class="fas fa-fw fa-utensils"></i>
 					<span>Outlet</span></a>
-			</li>
+			</li> -->
 
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('Admin/package');?>">
@@ -61,7 +61,7 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('Admin/transaction')?>">
+				<a class="nav-link" href="#">
 					<i class="fas fa-fw fa-shopping-cart"></i>
 					<span>Transaction</span></a>
 			</li>

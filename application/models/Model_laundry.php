@@ -155,6 +155,19 @@ Class model_laundry extends CI_Model{
         $this->db->delete($table);
     }
 
+    //Transaction
+    public function get_transctions(){
+        $data = $this->db->get('tb_transaction');
+        return $data->result();
+    }
+    //Menampilkan Data Table Ke View
+    public function get_transaction($table){
+        return $this->db->get($table);
+    }
+    public function get_data_transaction($table, $where){
+        return $this->db->get_where($table, $where);
+    }
+
 
 }
 ?>

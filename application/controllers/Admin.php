@@ -77,6 +77,14 @@ class Admin extends CI_Controller{
         $this->load->view('package/package',$data);
         $this->load->view('admin/templates/footer',$data);
     }
+    public function transaction(){
+        $data['title'] = "Transaction";
+        $this->load->view('admin/templates/header',$data);
+        $this->load->view('admin/templates/sidebar',$data);
+        $this->load->view('admin/templates/topbar',$data);
+        $this->load->view('transaction/transaction',$data);
+        $this->load->view('admin/templates/footer',$data);
+    }
     
     
 }
