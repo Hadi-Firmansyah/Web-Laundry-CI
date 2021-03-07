@@ -85,7 +85,6 @@ class Admin extends CI_Controller{
         $data['title'] = "Transaction";
         $data['get_packages'] = $this->model_laundry->get_packages();
         $data['get_customers'] = $this->model_laundry->get_customers();
-        $data['get_transactions'] = $this->model_laundry->get_transactions();
         $this->load->view('admin/templates/header',$data);
         $this->load->view('admin/templates/sidebar',$data);
         $this->load->view('admin/templates/topbar',$data);

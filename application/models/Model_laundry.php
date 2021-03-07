@@ -160,16 +160,19 @@ Class model_laundry extends CI_Model{
     }
 
     //Transaction
+    //Menampilkan Data Ke View
     public function get_transactions(){
         $data = $this->db->get('tb_transaction');
         return $data->result();
     }
-    //Menampilkan Data Table Ke View
+    //Menampilkan Seluruh Data Ke Dalam Table
     public function get_transaction($table){
         return $this->db->get($table);
     }
-    public function get_data_transaction($table, $where){
-        return $this->db->get_where($table, $where);
+    //Menampilkan Jumlah Data Table Dalam Bentuk Angka
+    public function count_transaction(){
+        $data = $this->db->get('tb_package');
+        return $data->num_rows();
     }
 
 
