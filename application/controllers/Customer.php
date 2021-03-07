@@ -5,7 +5,7 @@ class Customer extends CI_Controller{
         $this->load->model('model_laundry');
     }
     function customer_show(){
-        $dataCustomer = $this->model_laundry->get_customer('tb_member')->result();
+        $dataCustomer = $this->model_laundry->get_customer('tb_customer')->result();
         echo json_encode($dataCustomer);
     }
     function customer_save(){
@@ -32,14 +32,14 @@ class Customer extends CI_Controller{
                 'phone' => $phone,
             );
 
-            $this->model_laundry->save_customer($data, 'tb_member');
+            $this->model_laundry->save_customer($data, 'tb_customer');
         }
         echo json_encode($result);
     }
     function customer_get(){
         $id = $this->input->post('id');
         $where = array('id'=> $id);
-        $data = $this->model_laundry->get_data_customer('tb_member', $where)->result();
+        $data = $this->model_laundry->get_data_customer('tb_customer', $where)->result();
 
         echo json_encode($data);
     }
@@ -70,14 +70,14 @@ class Customer extends CI_Controller{
                 'phone' => $phone,
             );
 
-            $this->model_laundry->edit_customer($where, $data, 'tb_member');
+            $this->model_laundry->edit_customer($where, $data, 'tb_customer');
         }
         echo json_encode($result);
     }
     function customer_delete(){
         $id = $this->input->post('id');
         $where = array('id'=>$id);
-        $this->model_laundry->delete_customer($where, 'tb_member');
+        $this->model_laundry->delete_customer($where, 'tb_customer');
     }
 }
 ?>

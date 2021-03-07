@@ -111,7 +111,7 @@ Class model_laundry extends CI_Model{
 
     //Customer
     public function get_customers(){
-        $data = $this->db->get('tb_member');
+        $data = $this->db->get('tb_customer');
         return $data->result();
     }
     public function get_customer($table){
@@ -140,6 +140,10 @@ Class model_laundry extends CI_Model{
     public function get_package($table){
         return $this->db->get($table);
     }
+    public function count_package(){
+        $data = $this->db->get('tb_package');
+        return $data->num_rows();
+    }
     public function save_package($data,$table){
         $this->db->insert($table, $data);
     }
@@ -156,7 +160,7 @@ Class model_laundry extends CI_Model{
     }
 
     //Transaction
-    public function get_transctions(){
+    public function get_transactions(){
         $data = $this->db->get('tb_transaction');
         return $data->result();
     }

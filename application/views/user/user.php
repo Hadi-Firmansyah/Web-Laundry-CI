@@ -34,8 +34,8 @@
 
 				<tbody align="center">
 					<?php
-          				if($c_user>0){
-            			foreach($g_user as $datas){
+          				if($count_user>0){
+            			foreach($get_user as $datas){
           			?>
 					<tr>
 						<td><?php echo $datas->id;?></td>
@@ -113,7 +113,7 @@
 											<div class="form-group">
                                                 <select name="id_outlet" id="id_outlet" class="form-control" required>
                                                     <option selected disabled>Select Outlet...</option>
-                                                    <?php foreach ($get_outlet as $name) : ?>
+                                                    <?php foreach ($get_outlets as $name) : ?>
                                                     <option value="<?php echo $name->id; ?>"> <?php echo $name->name;?> </option>
                                                     <?php endforeach; ?>
                                                 </select>  

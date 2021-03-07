@@ -17,8 +17,8 @@
 				<thead align="center" class="bg-primary" style="color:white;">
 					<tr>
 						<th scope="col">No</th>
+						<th scope="col">ID Customer</th>
 						<th scope="col">Notes</th>
-						<th scope="col">Transaction Date</th>
 						<th scope="col">Discount</th>
 						<th scope="col">Tax</th>
 						<th scope="col">Total Price</th>
@@ -58,15 +58,14 @@
 							for (var i = 0; i < data.length; i++) {
 								row += '<tr>' +
 									'<td>' + (i+1) + '</td>' +
+									'<td>' + data[i].id_member + '</td>' +
 									'<td>' + data[i].invoice + '</td>' +
-									'<td>' + data[i].transaction_date + '</td>' +
 									'<td>' + data[i].discount + '</td>' +
 									'<td>' + data[i].tax + '</td>' +
 									'<td>' + data[i].total_price + '</td>' +
 									'<td>' + data[i].status + '</td>' +
 									'<td>' + data[i].paid + '</td>' +
-									'<td><a href="#exampleModal" data-toggle="modal" class="btn btn-success" onclick="submit('+ data[i].id +')">Edit</a>'+
-									' <a class="btn btn-danger" onclick="deleteData('+ data[i].id +')" style="color:white;" >Delete</a></td>' +
+									'<td>' + '<a class="btn btn-info" onclick="" style="color:white;" >Pay</a></td>' +
 									'</tr>';
 							}
 
@@ -148,7 +147,7 @@
 					<div class="modal-content">
 
 						<div class="modal-header">
-							<h5 class="modal-title" id="exampleModalLabel">Package</h5>
+							<h5 class="modal-title" id="exampleModalLabel">Add Transaction</h5>
 						</div>
 
 						<div class="modal-body">
@@ -159,19 +158,38 @@
 												<input type="hidden" name="id_outlet" class="form-control"  placeholder="ID Outlet" value="<?php echo $this->session->userdata('id_outlet');?>">
 											</div>
 											<div class="form-group">
-                                            <select name="type" id="type" class="form-control" required>
-                                                    <option selected disabled>Select Type...</option>
-													<option value="Kilos">Kilos</option>
-													<option value="Blanket">Blanket</option>
-													<option value="Bed Cover">Bed Cover</option>
-													<option value="T-Shirt">T-Shirt</option>
+											<select name="id_member" class="form-control" id="">
+											<option value="" disabled selected>Select Customers...</option>
+												<?php foreach($get_customers as $datas) { 
+													?>
+													<option value="<?php echo $datas->id?>"><?php echo $datas->name?></option>
+												<?php } ?>
+											</select>
+											</div>
+ 											<div class="form-group">
+											
+												<select name="package" class="form-control" id="">
+												<option value="" disabled selected>Select Package...</option>
+												<?php foreach($get_packages as $datas) { ?>
+													<option value=""><?php echo $datas->name?></option>
+												<?php } ?>
 												</select>
+											
 											</div>
  											<div class="form-group">
-												<input type="text" name="name" class="form-control" placeholder="Package Name">
+												<input type="number" name="package" class="form-control" placeholder="Quantity / KG">
 											</div>
  											<div class="form-group">
-												<input type="number" name="price" class="form-control" placeholder="Price">
+												<input type="number" name="package" class="form-control" placeholder="Discount">
+											</div>
+ 											<div class="form-group">
+												<input type="number" name="package" class="form-control" placeholder="Tax">
+											</div>
+ 											<div class="form-group">
+												<input type="number" name="package" class="form-control" placeholder="Total Price" readonly>
+											</div>
+ 											<div class="form-group">
+											 	<textarea name="invoice" class="form-control" cols="30" rows="10" placeholder="Notes"></textarea>
 											</div>
 
 											<div class="form-group" align="center">

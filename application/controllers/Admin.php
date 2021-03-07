@@ -13,6 +13,10 @@ class Admin extends CI_Controller{
         $data['title'] = "Dashboard Administrator";
         // $data['c_foods'] = $this->model_laundry->count_foods();
         // $data['c_order'] = $this->model_pos->count_order();
+        $data['count_user'] = $this->model_laundry->count_user();
+        $data['count_package'] = $this->model_laundry->count_package();
+        $data['count_transaction'] = $this->model_laundry->count_transaction();
+        // $data['count_package'] = $this->model_laundry->count_package();
         $this->load->view('admin/templates/header',$data);
         $this->load->view('admin/templates/sidebar',$data);
         $this->load->view('admin/templates/topbar',$data);
@@ -26,9 +30,9 @@ class Admin extends CI_Controller{
             redirect('Auth');
         }
         $data['title'] = "User";
-        $data['g_user'] = $this->model_laundry->get_user();
-        $data['c_user'] = $this->model_laundry->count_user();
-        $data['get_outlet'] = $this->model_laundry->get_outlets();
+        $data['get_user'] = $this->model_laundry->get_user();
+        $data['count_user'] = $this->model_laundry->count_user();
+        $data['get_outlets'] = $this->model_laundry->get_outlets();
         $this->load->view('admin/templates/header',$data);
         $this->load->view('admin/templates/sidebar',$data);
         $this->load->view('admin/templates/topbar',$data);
@@ -79,6 +83,9 @@ class Admin extends CI_Controller{
     }
     public function transaction(){
         $data['title'] = "Transaction";
+        $data['get_packages'] = $this->model_laundry->get_packages();
+        $data['get_customers'] = $this->model_laundry->get_customers();
+        $data['get_transactions'] = $this->model_laundry->get_transactions();
         $this->load->view('admin/templates/header',$data);
         $this->load->view('admin/templates/sidebar',$data);
         $this->load->view('admin/templates/topbar',$data);
