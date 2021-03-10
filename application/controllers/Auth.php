@@ -43,6 +43,7 @@ class Auth extends CI_Controller {
 
             foreach ($data as $dataz){
                 $data_session = array(
+                    'id' => $dataz->id,
                     'name' => $dataz->name,
                     'username' => $dataz->username,
                     'role' => $dataz->role,

@@ -83,12 +83,12 @@
 					var price_package = $("[name = 'price_package']").val();
 					var quantity = $("[name = 'quantity']").val();
                     var notes = $("[name = 'notes']").val();
-                    var pay_date = ''
+                    // var pay_date = ''
                     var total_price = $("[name = 'total_price']").val();
-                    var money = ''
-                    var total_change = ''
+                    // var money = ''
+                    // var total_change = ''
                     var status = 'Baru';
-                    var paid = 'Belum Dibayar'
+                    var paid = 'Belum Dibayar';
 					
                     $.ajax({
                         type : 'POST',
@@ -146,11 +146,18 @@
 							dataType : 'Json',
 							success : function(result){
 								// console.log(result);
-								$("[name = 'id']").val(result[0].id);
+								$$("[name = 'id']").val(result[0].id);
 								$("[name = 'id_outlet']").val(result[0].id_outlet);
-								$("[name = 'type']").val(result[0].type);
-								$("[name = 'name']").val(result[0].name);
-								$("[name = 'price']").val(result[0].price);
+								$("[name = 'transaction_date']").val(result[0].transaction_date);
+								$("[name = 'id_user']").val(result[0].id_user);
+								$("[name = 'id_member']").val(result[0].id_member);
+								$("[name = 'id_package']").val(result[0].id_package);
+								$("[name = 'price_package']").val(result[0].price_package);
+								$("[name = 'quantity']").val(result[0].quantity);
+								$("[name = 'notes']").val(result[0].notes);
+								$("[name = 'total_price']").val(result[0].total_price);
+								$("[name = 'status']").val(result[0].status);
+								$("[name = 'paid']").val(result[0].paid);
 							}
 
 						});
@@ -171,13 +178,13 @@
 
 						<div class="modal-body">
 									<p id="message" align="center" style="color:red;"></p>
-										<form>
+										<form action="<?php echo site_url('Transaction/transaction_save');?>" method="POST"">
 											<input type="hidden" name="id"  value="">
 											<div class="form-group">
 												<input type="hidden" name="id_outlet" class="form-control"  placeholder="ID Outlet" value="<?php echo $this->session->userdata('id_outlet');?>">
 											</div>
 											<div class="form-group">
-												<input type="hidden" name="id_user" class="form-control"  placeholder="ID Outlet" value="<?php echo $this->session->userdata('id');?>">
+												<input type="hidden" name="id_user" class="form-control"  placeholder="ID User" value="<?php echo $this->session->userdata('id');?>">
 											</div>
 											<div class="form-group">
 												<input type="date" name="transaction_date" class="form-control"  placeholder="Date Transaction" value="<?php echo date('Y-m-d') ?>">
@@ -234,8 +241,8 @@
             <!-- End Modal -->
 
 			<script>
-			
-			$('#id_package').on("change", function(){
+
+			$('#id_package').on("change", function() {
 				var id = $(this).val();
 
 				$.ajax({
@@ -253,22 +260,18 @@
 
 						$("#price_package").val(price);
 
-						// if(discount == 0 ){
-						// 	var total = parseInt(price)*
-						// 	$("#total_cost").val(total);
-						// }
-
-
 					}
-				})
-			})
+				});
+			});
+			
+			
 
 			function total(){
-				var price = Number(document.getElementById("price_package").value);
-				var quantity = Number(document.getElementById("quantity").value);
+				var price = Number(document.getElementById('price_package').value);
+				var quantity = Number(document.getElementById('quantity').value);
 
 				var total_price = price * quantity;
-				Number(document.getElementById("total_price").value = total_price);
+				Number(document.getElementById('total_price').value = total_price);
 			}
 
 			</script>

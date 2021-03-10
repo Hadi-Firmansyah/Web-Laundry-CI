@@ -22,9 +22,10 @@ class Transaction extends CI_Controller{
         $id_package = $this->input->post('id_package');
         $price_package = $this->input->post('price_package');
         $quantity = $this->input->post('quantity');
-        $notes = $this->input->post('price_package');
+        $notes = $this->input->post('notes');
         $total_price = $this->input->post('total_price');
         $status = $this->input->post('status');
+        $paid = $this->input->post('paid');
 
 
         if($id_member == ''){
@@ -33,8 +34,6 @@ class Transaction extends CI_Controller{
             $result['message'] = "Package must be selected !";
         }else if($quantity == ''){
             $result['message'] = "Quantity must be entered !";
-        }else if($phone == ''){
-            $result['message'] = "Phone must be entered !";
         }else{
             $result['message'] = "";
 
@@ -48,7 +47,8 @@ class Transaction extends CI_Controller{
                 'quantity' => $quantity,
                 'notes' => $notes,
                 'total_price' => $total_price,
-                'status' => $status
+                'status' => $status,
+                'paid' => $paid
             );
 
             $this->model_laundry->save_transaction($data, 'tb_transaction');
