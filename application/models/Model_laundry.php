@@ -174,9 +174,14 @@ Class model_laundry extends CI_Model{
         $data = $this->db->get('tb_package');
         return $data->num_rows();
     }
+    //Get data harga dari table package
     public function get_price($id){
         $data = $this->db->get_where('tb_package',['id' => $id]);
         return $data;
+    }
+    //Mengirim data ke table transaction
+    public function save_transaction($data,$table){
+        $this->db->insert($table, $data);
     }
 
 
