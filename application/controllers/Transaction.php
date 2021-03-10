@@ -9,5 +9,10 @@ class Transaction extends CI_Controller{
         echo json_encode($dataTransaction);
         
     }
+    function get_price_package(){
+        $id = $this->input->post('id_package',true);
+        $data_select = $this->model_laundry->get_price($id)->result();
+        echo json_encode($data_select);
+    }
 }
 ?>

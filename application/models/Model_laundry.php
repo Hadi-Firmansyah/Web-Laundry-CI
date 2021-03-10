@@ -174,6 +174,10 @@ Class model_laundry extends CI_Model{
         $data = $this->db->get('tb_package');
         return $data->num_rows();
     }
+    public function get_price($id){
+        $data = $this->db->get_where('tb_package',['id' => $id]);
+        return $data;
+    }
 
 
 }

@@ -19,8 +19,7 @@
 						<th scope="col">No</th>
 						<th scope="col">ID Customer</th>
 						<th scope="col">Notes</th>
-						<th scope="col">Discount</th>
-						<th scope="col">Tax</th>
+						<!-- <th scope="col">Discount</th> -->
 						<th scope="col">Total Price</th>
 						<th scope="col">Status</th>
 						<th scope="col">Paid</th>
@@ -60,8 +59,7 @@
 									'<td>' + (i+1) + '</td>' +
 									'<td>' + data[i].id_member + '</td>' +
 									'<td>' + data[i].invoice + '</td>' +
-									'<td>' + data[i].discount + '</td>' +
-									'<td>' + data[i].tax + '</td>' +
+									// '<td>' + data[i].discount + '</td>' +
 									'<td>' + data[i].total_price + '</td>' +
 									'<td>' + data[i].status + '</td>' +
 									'<td>' + data[i].paid + '</td>' +
@@ -158,6 +156,9 @@
 												<input type="hidden" name="id_outlet" class="form-control"  placeholder="ID Outlet" value="<?php echo $this->session->userdata('id_outlet');?>">
 											</div>
 											<div class="form-group">
+												<input type="date" name="transaction_date" class="form-control"  placeholder="Date Transaction" value="<?php echo date('Y-m-d') ?>">
+											</div>
+											<div class="form-group">
 											<select name="id_member" class="form-control" id="">
 											<option value="" disabled selected>Select Customers...</option>
 												<?php foreach($get_customers as $datas) { 
@@ -168,25 +169,25 @@
 											</div>
  											<div class="form-group">
 											
-												<select name="package" class="form-control" id="">
+												<select name="package" class="form-control" id="package">
 												<option value="" disabled selected>Select Package...</option>
-												<?php foreach($get_packages as $datas) { ?>
-													<option value=""><?php echo $datas->name?></option>
-												<?php } ?>
+												<?php foreach($get_packages as $datas) : ?>
+													<option value="<?php echo $datas->id?>"><?php echo $datas->type?></option>
+												<?php endforeach; ?>
 												</select>
 											
+											</div>
+											<div class="form-group">
+												<input type="number" name="price" class="form-control" placeholder="Price" id="price" readonly>
 											</div>
  											<div class="form-group">
 												<input type="number" name="package" class="form-control" placeholder="Quantity / KG">
 											</div>
+ 											<!-- <div class="form-group">
+												<input type="number" name="discount" id="discount" class="form-control" placeholder="Discount">
+											</div> -->
  											<div class="form-group">
-												<input type="number" name="package" class="form-control" placeholder="Discount">
-											</div>
- 											<div class="form-group">
-												<input type="number" name="package" class="form-control" placeholder="Tax">
-											</div>
- 											<div class="form-group">
-												<input type="number" name="package" class="form-control" placeholder="Total Price" readonly>
+												<input type="number" name="price" id="price" class="form-control" placeholder="Total Price" readonly>
 											</div>
  											<div class="form-group">
 											 	<textarea name="invoice" class="form-control" cols="30" rows="10" placeholder="Notes"></textarea>
@@ -207,6 +208,37 @@
 				</div>
 			</div>
             <!-- End Modal -->
+
+			<script>
+			
+			$('#package').on("change", function(){
+				var id = $(this).val();
+
+				$.ajax({
+					url:'<?php echo base_url(). "Transaction/get_price_package"?>',
+					method: "POST",
+					data: {id_package:id},
+					async: true,
+					dataType: 'Json',
+					success: function(data){
+						var price = "";
+
+						for(i = 0 ; i < data.length; i++){
+							price += data[i].price;
+						}
+
+						$("#price").val(price);
+
+						// if(discount == 0 ){
+						// 	var total = parseInt(price)*
+						// 	$("#total_cost").val(total);
+						// }
+
+
+					}
+				})
+			})
+			</script>
 
 		</div>
 		<!-- /.container-fluid -->

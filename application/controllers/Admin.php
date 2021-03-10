@@ -82,6 +82,12 @@ class Admin extends CI_Controller{
         $this->load->view('admin/templates/footer',$data);
     }
     public function transaction(){
+        if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') != 'Admin'){
+            redirect('Auth');
+        }else if($this->session->userdata('status_log') != 'Online'){
+            redirect('Auth');
+        }
+        
         $data['title'] = "Transaction";
         $data['get_packages'] = $this->model_laundry->get_packages();
         $data['get_customers'] = $this->model_laundry->get_customers();
