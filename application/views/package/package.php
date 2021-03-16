@@ -125,7 +125,7 @@
 
 				}
 				function editData(){
-
+ 
 					var id = $("[name = 'id']").val();
 					var id_outlet = $("[name = 'id_outlet']").val();
 					var type = $("[name = 'type']").val();

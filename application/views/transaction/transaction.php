@@ -65,7 +65,7 @@
 									'<td>' + data[i].total_price + '</td>' +
 									'<td>' + data[i].status + '</td>' +
 									'<td>' + data[i].paid + '</td>' +
-									'<td>' + '<a class="btn btn-info" onclick="" style="color:white;" >Pay</a></td>' +
+									'<td>' + '<a href="#modalPayment" data-toggle="modal" class="btn btn-success" onclick="payment('+ data[i].id +')">Pay</a>' + '</td>'
 									'</tr>';
 							}
 
@@ -165,6 +165,23 @@
 
 				}
 
+				function payment(x){
+					$.ajax({
+							type : 'POST',
+							data : 'id=' + x,
+							url : '<?php echo base_url(). "Payment/payment_select" ?>',
+							dataType : 'Json',
+							success : function(result){
+								// console.log(result);
+								$("[name = 'id']").val(result[0].id);
+								$("[name = 'id_packages']").val(result[0].id_package);
+								$("[name = 'total_prices']").val(result[0].total_price);
+					
+							}
+
+						});
+				}
+
 			</script>
 
 			<!-- Modal Add Data -->
@@ -240,13 +257,58 @@
 			</div>
             <!-- End Modal -->
 
+
+			<!-- Modal Payment -->
+			<div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Payment</h5>
+						</div>
+
+								<div class="modal-body">
+									<p id="message" align="center" style="color:red;"></p>
+									<form action="" method="POST">
+										<div class="form-group">
+											<input type="hidden" name="id" id="id" class="form-control" readonly>
+										</div>					
+										<div class="form-group">
+											<input type="date" name="payment_date" class="form-control" placeholder="Date" value="<?php echo date('Y-m-d') ?>" required readonly>
+										</div>
+										<div class="form-group">
+											<input type="number" name="id_packages" id="id_packages" class="form-control" placeholder="ID Package" readonly>
+										</div>
+										<div class="form-group">
+											<input type="text" name="total_prices" id="total_prices" class="form-control" placeholder="Total Price" readonly>
+										</div>
+										<div class="form-group">
+											<input type="number" name="money" class="form-control" placeholder="Insert Money" 
+											value="" required>
+										</div>
+										<div class="form-group">
+											<input type="number" name="total_change" id="total_change" class="form-control" placeholder="Change" required readonly>
+										</div>
+											<button class="btn btn-primary"  align="center" type="submit">Pay</button>
+									</form>
+                        		</div>
+
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+            <!-- End Modal -->
+
 			<script>
 
 			$('#id_package').on("change", function() {
 				var id = $(this).val();
 
 				$.ajax({
-					url:'<?php echo base_url(). "Transaction/get_price_package"?>',
+					url:'<?php echo base_url(). 'Transaction/get_price_package'?>',
 					method: "POST",
 					data: {id_package:id},
 					async: true,
@@ -258,7 +320,7 @@
 							price += data[i].price;
 						}
 
-						$("#price_package").val(price);
+						$('#price_package').val(price);
 
 					}
 				});

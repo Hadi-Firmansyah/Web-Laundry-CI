@@ -183,6 +183,18 @@ Class model_laundry extends CI_Model{
     public function save_transaction($data,$table){
         $this->db->insert($table, $data);
     }
+    public function get_data_transaction($table, $where){
+        return $this->db->get_where($table, $where);
+    }
+
+    //Payment
+    public function get_payments(){
+        $data = $this->db->get('tb_payment');
+        return $data->result();
+    }
+    public function get_payment($table){
+        return $this->db->get($table);
+    }
 
 
 }
