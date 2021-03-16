@@ -17,6 +17,7 @@
 				<thead align="center" class="bg-primary" style="color:white;">
 					<tr>
 						<th scope="col">No</th>
+						<th scope="col">ID Transaction</th>
 						<th scope="col">Date Transaction</th>
 						<th scope="col">ID Customer</th>
 						<th scope="col">Package</th>
@@ -58,6 +59,7 @@
 							for (var i = 0; i < data.length; i++) {
 								row += '<tr>' +
 									'<td>' + (i+1) + '</td>' +
+									'<td>' + data[i].id + '</td>' +
 									'<td>' + data[i].transaction_date + '</td>' +
 									'<td>' + data[i].id_member + '</td>' +
 									'<td>' + data[i].id_package + '</td>' +
@@ -229,13 +231,13 @@
 												<input type="number" name="price_package" class="form-control" placeholder="Price" id="price_package" readonly>
 											</div>
  											<div class="form-group">
-												<input type="number" name="quantity" id="quantity" class="form-control" placeholder="Quantity / KG">
+												<input type="number" name="quantity" id="quantity" onkeyup="total()" class="form-control" placeholder="Quantity / KG">
 											</div>
  											<!-- <div class="form-group">
 												<input type="number" name="discount" id="discount" class="form-control" placeholder="Discount">
 											</div> -->
  											<div class="form-group">
-												<input type="number" name="total_price" id="total_price" onkeyup="total()" class="form-control" placeholder="Total Price" readonly>
+												<input type="number" name="total_price" id="total_price" class="form-control" placeholder="Total Price" readonly>
 											</div>
  											<div class="form-group">
 											 	<textarea name="notes" class="form-control" cols="30" rows="10" placeholder="Notes"></textarea>
@@ -270,24 +272,23 @@
 								<div class="modal-body">
 									<p id="message" align="center" style="color:red;"></p>
 									<form action="" method="POST">
-										<div class="form-group">
+										<!-- <div class="form-group">
 											<input type="hidden" name="id" id="id" class="form-control" readonly>
-										</div>					
+										</div>					 -->
 										<div class="form-group">
 											<input type="date" name="payment_date" class="form-control" placeholder="Date" value="<?php echo date('Y-m-d') ?>" required readonly>
 										</div>
 										<div class="form-group">
-											<input type="number" name="id_packages" id="id_packages" class="form-control" placeholder="ID Package" readonly>
+											<input type="number" name="id" id="id" class="form-control" placeholder="ID Transaction" readonly>
 										</div>
 										<div class="form-group">
-											<input type="text" name="total_prices" id="total_prices" class="form-control" placeholder="Total Price" readonly>
+											<input type="text" name="total_prices" id="price" class="form-control" placeholder="Total Price" readonly>
 										</div>
 										<div class="form-group">
-											<input type="number" name="money" class="form-control" placeholder="Insert Money" 
-											value="" required>
+											<input type="number" name="money" id="money" onkeyup="changes()" class="form-control" placeholder="Insert Money" required>
 										</div>
 										<div class="form-group">
-											<input type="number" name="total_change" id="total_change" class="form-control" placeholder="Change" required readonly>
+											<input type="number" name="total_change" id="change" class="form-control" placeholder="Change" required readonly>
 										</div>
 											<button class="btn btn-primary"  align="center" type="submit">Pay</button>
 									</form>
@@ -333,7 +334,15 @@
 				var quantity = Number(document.getElementById('quantity').value);
 
 				var total_price = price * quantity;
-				Number(document.getElementById('total_price').value = total_price);
+								Number(document.getElementById('total_price').value = total_price);
+			}
+
+			function changes(){
+				var money = Number(document.getElementById('money').value);
+				var price = Number(document.getElementById('price').value);
+
+				var change = Number(money - price);
+							 Number(document.getElementById('change').value = change);
 			}
 
 			</script>
