@@ -322,6 +322,7 @@
 						}
 
 						$('#price_package').val(price);
+						total();
 
 					}
 				});
