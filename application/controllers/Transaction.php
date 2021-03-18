@@ -25,7 +25,6 @@ class Transaction extends CI_Controller{
         $notes = $this->input->post('notes');
         $total_price = $this->input->post('total_price');
         $status = $this->input->post('status');
-        $paid = $this->input->post('paid');
 
 
         if($id_member == ''){
@@ -47,8 +46,7 @@ class Transaction extends CI_Controller{
                 'quantity' => $quantity,
                 'notes' => $notes,
                 'total_price' => $total_price,
-                'status' => $status,
-                'paid' => $paid
+                'status' => $status
             );
 
             $this->model_laundry->save_transaction($data, 'tb_transaction');

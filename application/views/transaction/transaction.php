@@ -24,7 +24,6 @@
 						<th scope="col">Notes</th>
 						<th scope="col">Total Price</th>
 						<th scope="col">Status</th>
-						<th scope="col">Paid</th>
 						<th scope="col">Action</th>
 					</tr>
 				</thead>
@@ -66,7 +65,6 @@
 									'<td>' + data[i].notes + '</td>' +
 									'<td>' + data[i].total_price + '</td>' +
 									'<td>' + data[i].status + '</td>' +
-									'<td>' + data[i].paid + '</td>' +
 									'<td>' + '<a href="#modalPayment" data-toggle="modal" class="btn btn-success" onclick="payment('+ data[i].id +')">Pay</a>' + '</td>'
 									'</tr>';
 							}
@@ -90,8 +88,7 @@
                     var total_price = $("[name = 'total_price']").val();
                     // var money = ''
                     // var total_change = ''
-                    var status = 'Baru';
-                    var paid = 'Belum Dibayar';
+                    var status = 'Belum Dibayar';
 					
                     $.ajax({
                         type : 'POST',
@@ -104,8 +101,7 @@
 								'&quantity='+quantity+
 								'&notes='+notes+
 								'&total_price='+total_price+
-								'&status='+status+
-								'&paid='+paid,
+								'&status='+status,
 
                         url : '<?php echo base_url(). "Transaction/transaction_save" ?>',
                         dataType : 'Json',
@@ -127,7 +123,6 @@
 								$("[name = 'notes']").val('');
 								$("[name = 'total_price']").val('');
 								$("[name = 'status']").val('');
-								$("[name = 'paid']").val('');
 
 							}	
                         }
@@ -161,7 +156,6 @@
 								$("[name = 'notes']").val(result[0].notes);
 								$("[name = 'total_price']").val(result[0].total_price);
 								$("[name = 'status']").val(result[0].status);
-								$("[name = 'paid']").val(result[0].paid);
 							}
 
 						});
