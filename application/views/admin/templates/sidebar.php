@@ -65,6 +65,12 @@
 					<i class="fas fa-fw fa-shopping-cart"></i>
 					<span>Transaction</span></a>
 			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo site_url('Admin/payment')?>">
+					<i class="fas fa-fw fa-credit-card"></i>
+					<span>Payment</span></a>
+			</li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">

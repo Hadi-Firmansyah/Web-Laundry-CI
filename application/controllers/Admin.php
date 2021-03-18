@@ -97,6 +97,20 @@ class Admin extends CI_Controller{
         $this->load->view('transaction/transaction',$data);
         $this->load->view('admin/templates/footer',$data);
     }
+    public function payment(){
+        if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') != 'Admin'){
+            redirect('Auth');
+        }else if($this->session->userdata('status_log') != 'Online'){
+            redirect('Auth');
+        }
+        
+        $data['title'] = "Payment";
+        $this->load->view('admin/templates/header',$data);
+        $this->load->view('admin/templates/sidebar',$data);
+        $this->load->view('admin/templates/topbar',$data);
+        $this->load->view('payment/payment',$data);
+        $this->load->view('admin/templates/footer',$data);
+    }
     
     
 }

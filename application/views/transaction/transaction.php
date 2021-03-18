@@ -76,6 +76,7 @@
 					});
                 }
 
+				// ADD DATA TRANSACTION
 				function addData(){
                     var id_outlet = $("[name = 'id_outlet']").val();
                     var transaction_date = $("[name = 'transaction_date']").val();
@@ -125,14 +126,15 @@
 								$("[name = 'quantity']").val('');
 								$("[name = 'notes']").val('');
 								$("[name = 'total_price']").val('');
-								$("[name = 'status]").val('');
-								$("[name = 'paid]").val('');
+								$("[name = 'status']").val('');
+								$("[name = 'paid']").val('');
 
 							}	
                         }
                     });
                 }
 
+				//KONDISI KETIKA TOMBOL DI KLIK
 				function submit(x){
 					if(x  == "add"){
 						$('#btn-add').show();
@@ -167,6 +169,7 @@
 
 				}
 
+				//MENAM
 				function payment(x){
 					$.ajax({
 							type : 'POST',
@@ -186,7 +189,7 @@
 
 			</script>
 
-			<!-- Modal Add Data -->
+			<!-- Modal Add Data Transaction -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
 					<div class="modal-content">
@@ -195,7 +198,7 @@
 							<h5 class="modal-title" id="exampleModalLabel">Add Transaction</h5>
 						</div>
 
-						<div class="modal-body">
+								<div class="modal-body">
 									<p id="message" align="center" style="color:red;"></p>
 										<form action="<?php echo site_url('Transaction/transaction_save');?>" method="POST"">
 											<input type="hidden" name="id"  value="">
@@ -248,7 +251,7 @@
 												<button class="btn btn-primary" type="button" id="btn-edit" onclick="editData()">Edit</button>
 											</div>
 										</form>
-                        </div>
+                        		</div>
 
 						<div class="modal-footer">
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -268,15 +271,14 @@
 						<div class="modal-header">
 							<h5 class="modal-title" id="exampleModalLabel">Payment</h5>
 						</div>
-
-								<div class="modal-body">
+							<div class="modal-body">
 									<p id="message" align="center" style="color:red;"></p>
-									<form action="" method="POST">
+									<form action="">
 										<!-- <div class="form-group">
 											<input type="hidden" name="id" id="id" class="form-control" readonly>
 										</div>					 -->
 										<div class="form-group">
-											<input type="date" name="payment_date" class="form-control" placeholder="Date" value="<?php echo date('Y-m-d') ?>" required readonly>
+											<input type="date" name="payment_dates" class="form-control" placeholder="Date" value="<?php echo date('Y-m-d') ?>" required readonly>
 										</div>
 										<div class="form-group">
 											<input type="number" name="id" id="id" class="form-control" placeholder="ID Transaction" readonly>
@@ -285,26 +287,25 @@
 											<input type="text" name="total_prices" id="price" class="form-control" placeholder="Total Price" readonly>
 										</div>
 										<div class="form-group">
-											<input type="number" name="money" id="money" onkeyup="changes()" class="form-control" placeholder="Insert Money" required>
+											<input type="number" name="moneys" id="money" onkeyup="changes()" class="form-control" placeholder="Insert Money" required>
 										</div>
 										<div class="form-group">
-											<input type="number" name="total_change" id="change" class="form-control" placeholder="Change" required readonly>
+											<input type="number" name="total_changes" id="change" class="form-control" placeholder="Change" required readonly>
 										</div>
-											<button class="btn btn-primary"  align="center" type="submit">Pay</button>
+											<button class="btn btn-primary" onclick="addDatas()" align="center">Pay</button>
 									</form>
                         		</div>
-
-						<div class="modal-footer">
-							<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						</div>
-
-					</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
 				</div>
 			</div>
             <!-- End Modal -->
 
 			<script>
 
+			// KETIKA SELECT PACKAGE										
 			$('#id_package').on("change", function() {
 				var id = $(this).val();
 
@@ -345,6 +346,40 @@
 				var change = Number(money - price);
 							 Number(document.getElementById('change').value = change);
 			}
+
+			function addDatas(){
+                    var payment_date = $("[name = 'payment_dates']").val();
+					var id_transaction = $("[name = 'id']").val();
+					var total_prices = $("[name = 'total_prices']").val();
+					var moneys = $("[name = 'moneys']").val();
+					var total_changes = $("[name = 'total_changes']").val();
+                    var status = 'Selesai';
+					
+                    $.ajax({
+                        type : 'POST',
+                        data : 'payment_date='+payment_date+
+								'&id_transaction='+id_transaction+
+								'&total_price='+total_prices+
+								'&money='+moneys+
+								'&total_change='+total_changes+
+								'&status='+status,
+
+                        url : '<?php echo base_url(). "Payment/payment_save" ?>',
+                        dataType : 'Json',
+                        success : function(result){
+                            // console.log(result);
+							$('#message').html(result.message);
+
+							if(result.message == ""){
+								$('#modalPayment').modal('hide');
+
+								$("[name = 'moneys']").val('');
+
+							}
+                        }
+                    });
+                }
+
 
 			</script>
 

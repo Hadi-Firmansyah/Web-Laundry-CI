@@ -26,10 +26,12 @@ Class model_laundry extends CI_Model{
         $config['upload_path'] = './assets/';
         $config['allowed_types'] = 'jpg|png|gif';
         $config['max_size'] = '2048000';
-        $config['file'] = url_title($this->input->post('image'));
+        $config['width'] = '300';
+        $config['height'] = '300';  
+        $config['file'] = url_title($this->input->post('images'));
         $filename = $this->upload->file_name;
         $this->upload->initialize($config);
-        $this->upload->do_upload('image');
+        $this->upload->do_upload('images');
         $data = $this->upload->data();
 
         $data = array(
@@ -38,14 +40,14 @@ Class model_laundry extends CI_Model{
             'email' => $this->input->post('email'),
             'phone' => $this->input->post('phone'),
             'username' => $this->input->post('username'),
-            'password' => $this->input->post('password'),
-            // 'password' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
+            // 'password' => $this->input->post('password'),
+            'password' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
             'id_outlet' => $this->input->post('id_outlet'),
             'role' => $this->input->post('role'),
-            'image' => $data['file_name']
+            'images' => $data['file_name']
 
         );
-
+ 
         $this->db->insert('tb_user',$data);
         header("Location:".base_url('Admin/user'));
     }
@@ -57,10 +59,10 @@ Class model_laundry extends CI_Model{
         $config['upload_path'] = './assets/';
         $config['allowed_types'] = 'jpg|png|gif';
         $config['max_size'] = '2048000';
-        $config['file'] = url_title($this->input->post('image'));
+        $config['file'] = url_title($this->input->post('images'));
         $filename = $this->upload->file_name;
         $this->upload->initialize($config);
-        $this->upload->do_upload('image');
+        $this->upload->do_upload('images');
         $data = $this->upload->data();
 
         $id = $this->input->post('id');
@@ -70,11 +72,11 @@ Class model_laundry extends CI_Model{
             'email' => $this->input->post('email'),
             'phone' => $this->input->post('phone'),
             'username' => $this->input->post('username'),
-            'password' => $this->input->post('password'),
-            // 'password' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
+            // 'password' => $this->input->post('password'),
+            'password' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
             'id_outlet' => $this->input->post('id_outlet'),
             'role' => $this->input->post('role'),
-            'image' => $data['file_name']
+            'images' => $data['file_name']
 
         );
 
@@ -191,6 +193,9 @@ Class model_laundry extends CI_Model{
     public function get_payments(){
         $data = $this->db->get('tb_payment');
         return $data->result();
+    }
+    public function save_payment($data,$table){
+        $this->db->insert($table, $data);
     }
     public function get_payment($table){
         return $this->db->get($table);

@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Auth extends CI_Controller {
     public function __construct(){
         parent::__construct();
-        $this->load->helper('url');
+        $this->load->helper('url','form','file');
         $this->load->model('model_laundry');
 
     }
@@ -31,8 +31,8 @@ class Auth extends CI_Controller {
 
         $where = array(
             'username' => $usernames,
-            'password' => $passwords
-            // 'password' => password_verify($passwords)
+            // 'password' => $passwords
+            'password' => password_verify($passwords)
         );
         $check = $this->model_laundry->check_login("tb_user",$where)->num_rows();
 
