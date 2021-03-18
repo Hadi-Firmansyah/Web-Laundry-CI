@@ -44,19 +44,19 @@
 
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('Admin/customer');?>">
-					<i class="fas fa-fw fa-utensils"></i>
+					<i class="fas fa-fw fa-user-tag"></i>
 					<span>Customer</span></a>
 			</li>
 
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('Admin/outlet');?>">
-					<i class="fas fa-fw fa-utensils"></i>
+					<i class="fas fa-fw fa-code-branch"></i>
 					<span>Outlet</span></a>
 			</li>
 
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('Admin/package');?>">
-					<i class="fas fa-fw fa-utensils"></i>
+					<i class="fas fa-fw fa-box-open"></i>
 					<span>Package</span></a>
 			</li>
 
