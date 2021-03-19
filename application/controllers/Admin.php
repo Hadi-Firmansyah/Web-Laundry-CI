@@ -39,6 +39,22 @@ class Admin extends CI_Controller{
         $this->load->view('user/user',$data);
         $this->load->view('admin/templates/footer',$data);
     }
+    public function user2(){
+        if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') != 'Admin'){
+            redirect('Auth');
+        }else if($this->session->userdata('status_log') != 'Online'){
+            redirect('Auth');
+        }
+        $data['title'] = "User";
+        $data['get_user'] = $this->model_laundry->get_user();
+        $data['count_user'] = $this->model_laundry->count_user();
+        $data['get_outlets'] = $this->model_laundry->get_outlets();
+        $this->load->view('admin/templates/header',$data);
+        $this->load->view('admin/templates/sidebar',$data);
+        $this->load->view('admin/templates/topbar',$data);
+        $this->load->view('user/user2',$data);
+        $this->load->view('admin/templates/footer',$data);
+    }
     public function outlet(){
         if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') != 'Admin'){
             redirect('Auth');

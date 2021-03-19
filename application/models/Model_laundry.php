@@ -27,14 +27,15 @@ Class model_laundry extends CI_Model{
     //Save Data User
     public function save_user(){
         $config['upload_path'] = './assets/';
-        $config['allowed_types'] = 'jpg|png|gif';
+        $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = '2048000';
         $config['width'] = '300';
         $config['height'] = '300';  
-        $config['files'] = url_title($this->input->post('images'));
+        $config['file_name'] = url_title($this->input->post('image'));
         $filename = $this->upload->file_name;
+        $this->load->library('upload', $config);
         $this->upload->initialize($config);
-        $this->upload->do_upload('images');
+        $this->upload->do_upload('image');
         $data = $this->upload->data();
 
         //Yang kiri Field Database Yang Kanan Name Form

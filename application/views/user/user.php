@@ -23,7 +23,6 @@
 						<th scope="col">Email</th>
 						<th scope="col">Phone</th>
 						<th scope="col">Username</th>
-						<!-- <th scope="col">Password</th> -->
 						<th scope="col">Outlet</th>
 						<th scope="col">Role</th>
 						<th scope="col">Image</th>
@@ -45,7 +44,7 @@
                         <!-- <td><?php echo $datas->password;?></td> -->
                         <td><?php echo $datas->id_outlet;?></td>
                         <td><?php echo $datas->role;?></td>
-                        <td><img style="width : 100px;" src="<?php echo base_url('assets/'.$datas->image)?>"></td>
+                        <td><img style="width : 75px;" src="<?php echo base_url('assets/'.$datas->image)?>"></td>
 						<td>
 							<div>
 								<a href="<?php echo site_url('User/user_edit/'.$datas->id);?>">
@@ -93,8 +92,7 @@
 							<div class="row justify-content-center">
 								<div class="card text-center">
 									<div class="card-body">
-										<form action="<?php echo site_url('User/user_save');?>" method="POST"
-											enctype="multipart/form-data">
+										<form action="<?php echo site_url('User/user_save');?>"  method="POST" enctype="multipart/form-data">
 											<div class="form-group">
 												<input type="text" name="name" class="form-control" placeholder="Name" required>
 											</div>
@@ -127,7 +125,7 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<input type="file" name="images" class="form-control" placeholder="Choose Image" required>
+												<input type="file" id="image" name="image" class="form-control">
 											</div>
 
 											<div class="form-group">
