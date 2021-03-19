@@ -9,9 +9,7 @@
 			<div>
 				<button class="btn btn-primary mb-3" style="width:15%;" type="button" 
 					data-toggle="modal" data-target="#exampleModal">Add User</button>
-				<a href="#">
-					<button class="btn btn-danger mb-3" style="width:15%;" >Generate PDF</button></a>
-				<a href="#">
+				<a href="<?php echo base_url("User/user_print_xls")?>">
 					<button class="btn btn-success mb-3" style="width:15%;" >Generate XLS</button></a>
 			</div>
 			<br>
@@ -129,7 +127,7 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<input type="file" name="image" class="form-control" placeholder="Choose Image" required>
+												<input type="file" name="images" class="form-control" placeholder="Choose Image" required>
 											</div>
 
 											<div class="form-group">

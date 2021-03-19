@@ -25,7 +25,17 @@ class User extends CI_Controller{
     }
     public function action_edit(){
         $this->model_laundry->edit_user();
-
     } 
+    //Print XLS
+    public function user_print_xls(){
+        header('Content-Type: application / vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="All_Data_User.xls"');
+        //namafilenya//
+        header('Cache-Control: max-age=0');
+
+        $data['get_user']=$this->model_laundry->get_user();
+        $this->load->view('user/user_preview',$data);
+
+    }
 }
 ?>
