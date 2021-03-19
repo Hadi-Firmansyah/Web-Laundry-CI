@@ -13,17 +13,20 @@ Class model_laundry extends CI_Model{
         $this->db->update('tb_user');
     }
 
-    //User
+    ////// CRUD USER DENGAN PHP //////
+    //Get Data Dari Table User
     public function get_user(){
         $data = $this->db->get('tb_user');
         return $data->result();
     }
+    //Get Jumlah Isi Dari Table User
     public function count_user(){
         $data = $this->db->get('tb_user');
         return $data->num_rows();
     }
+    //Save Data User
     public function save_user(){
-        $config['upload_path'] = './assets/profile';
+        $config['upload_path'] = './assets/profile/';
         $config['allowed_types'] = 'jpg|png|gif';
         $config['max_size'] = '2048000';
         $config['width'] = '300';
@@ -53,10 +56,12 @@ Class model_laundry extends CI_Model{
         $this->db->insert('tb_user',$data);
         header("Location:".base_url('Admin/user'));
     }
+    //Get Data User Berdasarkan ID
     public function get_data_user($id){
         $data = $this->db->query("SELECT * FROM tb_user WHERE id='$id'");
         return $data -> result();
     }
+    //Edit Data User
     public function edit_user(){
         $config['upload_path'] = './assets/';
         $config['allowed_types'] = 'jpg|png|gif';
@@ -86,11 +91,12 @@ Class model_laundry extends CI_Model{
         $this->db->update('tb_user' , $data);
         header("Location:".base_url('Admin/user'));
     }
+    //Delet Data User
     public function delete_user($id){
         $this->db->delete('tb_user',array('id' => $id));
     }
 
-    //Outlet
+    // Outlets
     public function get_outlets(){
         $data = $this->db->get('tb_outlet');
         return $data->result();
@@ -137,6 +143,7 @@ Class model_laundry extends CI_Model{
     }
 
     //Package
+    //Menampilkan Data All Package
     public function get_packages(){
         $data = $this->db->get('tb_package');
         return $data->result();
@@ -163,22 +170,22 @@ Class model_laundry extends CI_Model{
         $this->db->delete($table);
     }
 
-    //Transaction
-    //Menampilkan Data Ke View
+     ////// CRUD TRANSACATION DENGAN AJAX //////
+    //Menampilkan Data Ke View Dengan Php
     public function get_transactions(){
         $data = $this->db->get('tb_transaction');
         return $data->result();
-    }
-    //Menampilkan Seluruh Data Ke Dalam Table
-    public function get_transaction($table){
-        return $this->db->get($table);
     }
     //Menampilkan Jumlah Data Table Dalam Bentuk Angka
     public function count_transaction(){
         $data = $this->db->get('tb_package');
         return $data->num_rows();
     }
-    //Get data harga dari table package
+    //Menampilkan Seluruh Data Ke View Dengan Ajax
+    public function get_transaction($table){
+        return $this->db->get($table);
+    }
+    //Get data harga dari table package berdasarkan id
     public function get_price($id){
         $data = $this->db->get_where('tb_package',['id' => $id]);
         return $data;
@@ -189,6 +196,11 @@ Class model_laundry extends CI_Model{
     }
     public function get_data_transaction($table, $where){
         return $this->db->get_where($table, $where);
+    }
+    //Menampilkan Package Sesuai Outlet
+    public function get_package_outlet($id){
+        $data = $this->db->query("SELECT * FROM tb_package WHERE id_outlet='$id'");
+        return $data->result();
     }
 
     //Payment

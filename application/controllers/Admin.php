@@ -89,7 +89,9 @@ class Admin extends CI_Controller{
         }
         
         $data['title'] = "Transaction";
-        $data['get_packages'] = $this->model_laundry->get_packages();
+        $id = $this->session->userdata('id_outlet');
+        $data['get_package_outlet'] = $this->model_laundry->get_package_outlet($id);
+        $data['get_packages'] = $this->model_laundry->get_packages();//Tidak Terpakai
         $data['get_customers'] = $this->model_laundry->get_customers();
         $this->load->view('admin/templates/header',$data);
         $this->load->view('admin/templates/sidebar',$data);

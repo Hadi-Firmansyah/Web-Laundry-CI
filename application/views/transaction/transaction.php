@@ -203,7 +203,7 @@
 												<input type="hidden" name="id_user" class="form-control"  placeholder="ID User" value="<?php echo $this->session->userdata('id');?>">
 											</div>
 											<div class="form-group">
-												<input type="date" name="transaction_date" class="form-control"  placeholder="Date Transaction" value="<?php echo date('Y-m-d') ?>">
+												<input type="date" name="transaction_date" class="form-control"  placeholder="Date Transaction" value="<?php echo date('Y-m-d') ?>" readonly>
 											</div>
 											<div class="form-group">
 											<select name="id_member" class="form-control" id="">
@@ -218,7 +218,7 @@
 											
 												<select name="id_package" class="form-control" id="id_package">
 												<option value="" disabled selected>Select Package...</option>
-												<?php foreach($get_packages as $datas) : ?>
+												<?php foreach($get_package_outlet as $datas) : ?>
 													<option value="<?php echo $datas->id?>"><?php echo $datas->type?></option>
 												<?php endforeach; ?>
 												</select>
