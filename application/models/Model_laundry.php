@@ -23,17 +23,18 @@ Class model_laundry extends CI_Model{
         return $data->num_rows();
     }
     public function save_user(){
-        $config['upload_path'] = './assets/';
+        $config['upload_path'] = './assets/profile';
         $config['allowed_types'] = 'jpg|png|gif';
         $config['max_size'] = '2048000';
         $config['width'] = '300';
         $config['height'] = '300';  
-        $config['file'] = url_title($this->input->post('images'));
+        $config['files'] = url_title($this->input->post('image'));
         $filename = $this->upload->file_name;
         $this->upload->initialize($config);
-        $this->upload->do_upload('images');
+        $this->upload->do_upload('image');
         $data = $this->upload->data();
 
+        //Yang kiri Field Database Yang Kanan Name Form
         $data = array(
             'id' => "",
             'name' => $this->input->post('name'),
@@ -44,7 +45,8 @@ Class model_laundry extends CI_Model{
             'password' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
             'id_outlet' => $this->input->post('id_outlet'),
             'role' => $this->input->post('role'),
-            'images' => $data['file_name']
+            'image' => $data['file_name'],
+            'status_log' => 'Offline'
 
         );
  
@@ -59,10 +61,10 @@ Class model_laundry extends CI_Model{
         $config['upload_path'] = './assets/';
         $config['allowed_types'] = 'jpg|png|gif';
         $config['max_size'] = '2048000';
-        $config['file'] = url_title($this->input->post('images'));
+        $config['file'] = url_title($this->input->post('image'));
         $filename = $this->upload->file_name;
         $this->upload->initialize($config);
-        $this->upload->do_upload('images');
+        $this->upload->do_upload('image');
         $data = $this->upload->data();
 
         $id = $this->input->post('id');
@@ -76,7 +78,7 @@ Class model_laundry extends CI_Model{
             'password' => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
             'id_outlet' => $this->input->post('id_outlet'),
             'role' => $this->input->post('role'),
-            'images' => $data['file_name']
+            'image' => $data['file_name']
 
         );
 

@@ -6,7 +6,7 @@ class User extends CI_Controller{
     }
     public function user_save(){
         $this->model_laundry->save_user();
-    }
+    } 
     public function user_delete($id){
         $this->model_laundry->delete_user($id);
        redirect('Admin/user');
@@ -17,7 +17,7 @@ class User extends CI_Controller{
         $data['g_user'] = $this->model_laundry->get_user();
         $data['c_user'] = $this->model_laundry->count_user();
         $data['data_edit'] = $this->model_laundry->get_data_user($id);
-        $data['get_outlet'] = $this->model_laundry->get_outlets();
+        $data['get_outlets'] = $this->model_laundry->get_outlets();
         $this->load->view('admin/templates/sidebar',$data);
         $this->load->view('admin/templates/topbar',$data);
         $this->load->view('user/edit_user',$data);

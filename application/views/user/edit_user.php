@@ -24,8 +24,15 @@
 		<div class="form-group">
 			<input type="password" name="password" class="form-control" placeholder="Password" required>
 		</div>
-        <div class="form-group">
-			<input type="number" name="id_outlet" class="form-control" placeholder="ID Level" value="<?php echo $edit->id_outlet; ?>" required>
+        <!-- <div class="form-group">
+			<input type="number" name="id_outlet" class="form-control" placeholder="ID Outlet" value="<?php echo $edit->id_outlet; ?>" required>
+		</div> -->
+		<div class="form-group">
+			<select name="id_outlet" class="form-control">
+			<?php foreach ($get_outlets as $name) : ?>
+                <option value="<?php echo $name->id; ?>"> <?php echo $name->name;?></option>
+            <?php endforeach; ?>
+			</select>
 		</div>
 		<div class="form-group">
 			<select name="role" id="role" class="form-control" readonly>

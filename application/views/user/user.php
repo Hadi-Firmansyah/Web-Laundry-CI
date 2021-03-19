@@ -27,6 +27,7 @@
 						<th scope="col">Username</th>
 						<!-- <th scope="col">Password</th> -->
 						<th scope="col">Outlet</th>
+						<th scope="col">Role</th>
 						<th scope="col">Image</th>
                         <th scope="col">Action</th>
 					</tr>
@@ -45,7 +46,8 @@
 						<td><?php echo $datas->username;?></td>
                         <!-- <td><?php echo $datas->password;?></td> -->
                         <td><?php echo $datas->id_outlet;?></td>
-                        <td><img style="width : 100px;" src="<?php echo base_url('assets/'.$datas->images)?>"></td>
+                        <td><?php echo $datas->role;?></td>
+                        <td><img style="width : 100px;" src="<?php echo base_url('assets/'.$datas->image)?>"></td>
 						<td>
 							<div>
 								<a href="<?php echo site_url('User/user_edit/'.$datas->id);?>">
@@ -127,7 +129,7 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<input type="file" name="images" class="form-control" placeholder="Choose Image" required>
+												<input type="file" name="image" class="form-control" placeholder="Choose Image" required>
 											</div>
 
 											<div class="form-group">
