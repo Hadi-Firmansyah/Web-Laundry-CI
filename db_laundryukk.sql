@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 19, 2021 at 08:37 AM
+-- Generation Time: Mar 27, 2021 at 07:10 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -113,7 +113,9 @@ INSERT INTO `tb_payment` (`id`, `payment_date`, `id_transaction`, `total_price`,
 (3, '2021-03-19', 20, 50000, 60000, 10000, 'Selesai'),
 (4, '2021-03-19', 21, 100000, 100000, 0, 'Selesai'),
 (5, '2021-03-19', 22, 55000, 60000, 5000, 'Selesai'),
-(6, '2021-03-19', 23, 70000, 70000, 0, 'Selesai');
+(6, '2021-03-19', 23, 70000, 70000, 0, 'Selesai'),
+(7, '2021-03-26', 24, 40000, 59999, 19999, 'Selesai'),
+(8, '2021-03-27', 25, 40000, 50000, 10000, 'Selesai');
 
 --
 -- Triggers `tb_payment`
@@ -156,7 +158,9 @@ INSERT INTO `tb_transaction` (`id`, `id_outlet`, `transaction_date`, `id_user`, 
 (20, 2, '2021-03-18', 1, 2, 4, 10000, 5, 'Notes\n', 50000, 'Dibayar'),
 (21, 1, '2021-03-19', 1, 3, 4, 10000, 10, 'Notes', 100000, 'Dibayar'),
 (22, 2, '2021-03-19', 3, 3, 5, 11000, 5, 'Keterangan', 55000, 'Dibayar'),
-(23, 2, '2021-03-19', 3, 3, 4, 10000, 7, '', 70000, 'Dibayar');
+(23, 2, '2021-03-19', 3, 3, 4, 10000, 7, '', 70000, 'Dibayar'),
+(24, 1, '2021-03-26', 1, 2, 3, 8000, 5, 'hdgf', 40000, 'Dibayar'),
+(25, 1, '2021-03-27', 1, 3, 3, 8000, 5, 'jashfhsd', 40000, 'Dibayar');
 
 -- --------------------------------------------------------
 
@@ -182,10 +186,11 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id`, `name`, `username`, `email`, `phone`, `password`, `id_outlet`, `role`, `image`, `status_log`) VALUES
-(1, 'Hadi Firmansyah', '23Firman_', 'hadifirmansyah.id@gmail.com', '085157750023', '$2y$10$Ip/BhETs4MZvJJk/3wRK2ecxARUOIBuPgXzADp6NYa/GObY91pl0W', 1, 'Admin', 'RED.jpg', 'Online'),
-(2, 'Julius Ryan Listianto', 'Julius25', 'Julius25@gmail.com', '1234567890', '$2y$10$ChSAcs73vbWHXesN0ZXeOOMCH3REJbrtBS/Bcfy8FANpzPfozHyVW', 2, 'Cashier', 'RED.jpg', 'Offline'),
-(3, 'Burhanudin Dwi Saputra', 'Burhan12', 'Burhanudin12@gmail.com', '1234567890', '$2y$10$2P1o69VLQfQ/PD7HUzuqbOJshyJm73PTF.IHEQ0luXz3vnZz9dGWe', 2, 'Admin', 'RED.jpg', 'Online'),
-(4, 'Muhammad Farhan', 'Ok.Farhan', 'muhammadfarhan@gmail.com', '1234567890', '$2y$10$g1YE6CksvRv3PcggnaqO4OMH5Kn8zNcn1j48DBjA8wi7cV6t7RQj.', 2, 'Admin', 'RED.jpg', 'Offline');
+(1, 'Hadi Firmansyah', '23Firman_', 'hadifirmansyah.id@gmail.com', '085157750023', '$2y$10$Ip/BhETs4MZvJJk/3wRK2ecxARUOIBuPgXzADp6NYa/GObY91pl0W', 1, 'Admin', 'RED.png', 'Offline'),
+(2, 'Julius Ryan Listianto', 'Julius25', 'Julius25@gmail.com', '1234567890', '$2y$10$ChSAcs73vbWHXesN0ZXeOOMCH3REJbrtBS/Bcfy8FANpzPfozHyVW', 2, 'Cashier', 'GREEN.png', 'Offline'),
+(3, 'Burhanudin Dwi Saputra', 'Burhan12', 'Burhanudin12@gmail.com', '1234567890', '$2y$10$2P1o69VLQfQ/PD7HUzuqbOJshyJm73PTF.IHEQ0luXz3vnZz9dGWe', 2, 'Admin', 'RED.png', 'Online'),
+(50, 'Julius Ryan Listianto', 'hadi-firmansyah', 'hadifirmansyah.id@gmail.com', '085771364038', '$2y$10$7.EbjKXNxvxYCX8SP54FHOEwgu5kYUPZ6dTbishWeIewDCamVoY0.', 24, 'Owner', 'BLUE1.png', 'Offline'),
+(51, 'Piscok', 'ahmad', 'admin@admin.com', '0987654321', '$2y$10$iJCJEvtYYnIhdWVJ0MFFIO7KLMw9svTxyXN8ltB.xoJg4B.uAYsiy', 24, 'Owner', 'PURPLE1.png', 'Offline');
 
 --
 -- Indexes for dumped tables
@@ -260,19 +265,19 @@ ALTER TABLE `tb_package`
 -- AUTO_INCREMENT for table `tb_payment`
 --
 ALTER TABLE `tb_payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tb_transaction`
 --
 ALTER TABLE `tb_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Constraints for dumped tables

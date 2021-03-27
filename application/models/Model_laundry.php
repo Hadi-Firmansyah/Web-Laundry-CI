@@ -26,7 +26,7 @@ Class model_laundry extends CI_Model{
     }
     //Save Data User
     public function save_user(){
-        $config['upload_path'] = './assets/';
+        $config['upload_path'] = './profile/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = '2048000';
         $config['width'] = '300';

@@ -41,10 +41,9 @@
 						<td><?php echo $datas->email;?></td>
 						<td><?php echo $datas->phone;?></td>
 						<td><?php echo $datas->username;?></td>
-                        <!-- <td><?php echo $datas->password;?></td> -->
                         <td><?php echo $datas->id_outlet;?></td>
                         <td><?php echo $datas->role;?></td>
-                        <td><img style="width : 75px;" src="<?php echo base_url('assets/'.$datas->image)?>"></td>
+                        <td><img style="width : 75px;" src="<?php echo base_url('profile/'.$datas->image)?>"></td>
 						<td>
 							<div>
 								<a href="<?php echo site_url('User/user_edit/'.$datas->id);?>">
