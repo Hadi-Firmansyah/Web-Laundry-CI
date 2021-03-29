@@ -16,6 +16,8 @@ class Auth extends CI_Controller {
             header("Location:".base_url().'Admin/index/'.$this->session->userdata('username'));
         }else if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') == 'Cashier') {
             header("Location:".base_url().'Cashier/index/'.$this->session->userdata('username'));
+        }else if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') == 'Owner') {
+            header("Location:".base_url().'Owner/report/'.$this->session->userdata('username'));
         }
 		$this->load->view('auth/home');
     }
