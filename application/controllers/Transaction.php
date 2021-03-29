@@ -5,9 +5,10 @@ class Transaction extends CI_Controller{
         $this->load->model('model_laundry');
     }
     function transaction_show(){
-        $dataTransaction = $this->model_laundry->get_transaction('tb_transaction')->result();
+        $id = $this->session->userdata('id_outlet');
+        $dataTransaction = $this->model_laundry->get_transaction($id);
+        // $dataTransaction = $this->model_laundry->get_transaction('tb_transaction')->result();
         echo json_encode($dataTransaction);
-        
     }
     function get_price_package(){
         $id = $this->input->post('id_package',true);
@@ -25,7 +26,6 @@ class Transaction extends CI_Controller{
         $notes = $this->input->post('notes');
         $total_price = $this->input->post('total_price');
         $status = $this->input->post('status');
-
 
         if($id_member == ''){
             $result['message'] = "Member must be selected !";
@@ -52,6 +52,15 @@ class Transaction extends CI_Controller{
             $this->model_laundry->save_transaction($data, 'tb_transaction');
         }
         echo json_encode($result);
+    }
+    public function transaction_print_xls(){
+        header('Content-Type: application / vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="All_Data_Transaction.xls"');
+        header('Cache-Control: max-age=0');
+
+        $data['get_transactions']=$this->model_laundry->get_transactions();
+        $this->load->view('transaction/transaction_preview',$data);
+
     }
 }
 ?>

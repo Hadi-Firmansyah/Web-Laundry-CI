@@ -59,8 +59,8 @@
 									'<td>' + data[i].type + '</td>' +
 									'<td>' + data[i].name + '</td>' +
 									'<td>' + data[i].price + '</td>' +
-									'<td><a href="#exampleModal" data-toggle="modal" class="btn btn-success" onclick="submit('+ data[i].id +')">Edit</a>'+
-									' <a class="btn btn-danger" onclick="deleteData('+ data[i].id +')" style="color:white;" >Delete</a></td>' +
+									'<td><a href="#exampleModal" data-toggle="modal" class="btn btn-success btn-block" onclick="submit('+ data[i].id +')">Edit</a>'+
+									' <a class="btn btn-danger btn-block" onclick="deleteData('+ data[i].id +')" style="color:white;" >Delete</a></td>' +
 									'</tr>';
 							}
 

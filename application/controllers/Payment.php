@@ -45,5 +45,14 @@ class Payment extends CI_Controller{
         $dataPayment = $this->model_laundry->get_payment('tb_payment')->result();
         echo json_encode($dataPayment);
     }
+    public function payment_print_xls(){
+        header('Content-Type: application / vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="All_Data_Payment.xls"');
+        header('Cache-Control: max-age=0');
+
+        $data['get_payments']=$this->model_laundry->get_payments();
+        $this->load->view('payment/payment_preview',$data);
+
+    }
 }
 ?>

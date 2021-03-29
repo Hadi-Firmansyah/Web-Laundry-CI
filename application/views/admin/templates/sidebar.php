@@ -72,6 +72,12 @@
 					<span>Payment</span></a>
 			</li>
 
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo site_url('Admin/report')?>">
+					<i class="fas fa-fw fa-credit-card"></i>
+					<span>Report</span></a>
+			</li>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 
@@ -81,7 +87,7 @@
 			</div>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="<?php echo base_url('Auth/logout') ;?>">
 					<i class="fas fa-fw fa-sign-out-alt"></i>
 					<span>Logout</span></a>
 			</li>

@@ -13,6 +13,8 @@ class Customer extends CI_Controller{
         $address = $this->input->post('address');
         $gender = $this->input->post('gender');
         $phone = $this->input->post('phone');
+        $latitude = $this->input->post('latitude');
+        $longitude = $this->input->post('longitude');
 
         if($name == ''){
             $result['message'] = "Name must be entered !";
@@ -30,6 +32,8 @@ class Customer extends CI_Controller{
                 'address' => $address,
                 'gender' => $gender,
                 'phone' => $phone,
+                'latitude' => $latitude,
+                'longitude' => $longitude,
             );
 
             $this->model_laundry->save_customer($data, 'tb_customer');
@@ -49,6 +53,8 @@ class Customer extends CI_Controller{
         $address = $this->input->post('address');
         $gender = $this->input->post('gender');
         $phone = $this->input->post('phone');
+        $latitude = $this->input->post('latitude');
+        $longitude = $this->input->post('longitude');
 
         if($name == ''){
             $result['message'] = "Name must be entered !";
@@ -68,6 +74,8 @@ class Customer extends CI_Controller{
                 'address' => $address,
                 'gender' => $gender,
                 'phone' => $phone,
+                'latitude' => $latitude,
+                'longitude' => $longitude,
             );
 
             $this->model_laundry->edit_customer($where, $data, 'tb_customer');
@@ -78,6 +86,23 @@ class Customer extends CI_Controller{
         $id = $this->input->post('id');
         $where = array('id'=>$id);
         $this->model_laundry->delete_customer($where, 'tb_customer');
+    }
+
+    function customer_location(){ 
+        $id = $this->input->post('id');
+        $where = array('id'=> $id);
+        $data = $this->model_laundry->get_data_location('tb_customer', $where)->result();
+
+        echo json_encode($data);  
+    }
+    public function customer_print_xls(){
+        header('Content-Type: application / vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="All_Data_Customer.xls"');
+        header('Cache-Control: max-age=0');
+
+        $data['get_customers']=$this->model_laundry->get_customers();
+        $this->load->view('customer/customer_preview',$data);
+
     }
 }
 ?>

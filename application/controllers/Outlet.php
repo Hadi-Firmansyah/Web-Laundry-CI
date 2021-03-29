@@ -71,5 +71,14 @@ class Outlet extends CI_Controller{
         $where = array('id'=>$id);
         $this->model_laundry->delete_outlet($where, 'tb_outlet');
     }
+    public function outlet_print_xls(){
+        header('Content-Type: application / vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="All_Data_Outlet.xls"');
+        header('Cache-Control: max-age=0');
+
+        $data['get_outlets']=$this->model_laundry->get_outlets();
+        $this->load->view('outlet/outlet_preview',$data);
+
+    }
 }
 ?>

@@ -142,6 +142,9 @@ Class model_laundry extends CI_Model{
         $this->db->where($where);
         $this->db->delete($table);
     }
+    public function get_data_location($table, $where){
+        return $this->db->get_where($table, $where);
+    }
 
     //Package
     //Menampilkan Data All Package
@@ -183,8 +186,11 @@ Class model_laundry extends CI_Model{
         return $data->num_rows();
     }
     //Menampilkan Seluruh Data Ke View Dengan Ajax
-    public function get_transaction($table){
-        return $this->db->get($table);
+    public function get_transaction($id){
+        // return $this->db->get($table);
+        $data = $this->db->query("SELECT * FROM tb_transaction WHERE id_outlet='$id'");
+        return $data->result();
+
     }
     //Get data harga dari table package berdasarkan id
     public function get_price($id){
@@ -201,6 +207,10 @@ Class model_laundry extends CI_Model{
     //Menampilkan Package Sesuai Outlet
     public function get_package_outlet($id){
         $data = $this->db->query("SELECT * FROM tb_package WHERE id_outlet='$id'");
+        return $data->result();
+    }
+    public function get_data_transaction_user($id){
+        $data = $this->db->query("SELECT * FROM tb_transaction WHERE id_user='$id'");
         return $data->result();
     }
 

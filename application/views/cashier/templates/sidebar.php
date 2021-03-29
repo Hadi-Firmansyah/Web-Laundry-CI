@@ -17,53 +17,33 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 
-			<!-- Heading
-			<div class="sidebar-heading">
-				Cashier
-			</div>
-
-			<li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('Admin/index');?>">
-					<i class="fas fa-fw fa-tachometer-alt"></i>
-					<span>Dashboard</span></a>
-			</li>
-
-			<li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('Admin/user');?>">
-					<i class="fas fa-fw fa-user"></i>
-					<span>User</span></a>
-			</li> -->
-
-			<!-- Divider -->
-			<!-- <hr class="sidebar-divider"> -->
-
 			<!-- Heading -->
 			<div class="sidebar-heading">
 				Apps
 			</div>
 
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('Admin/customer');?>">
-					<i class="fas fa-fw fa-utensils"></i>
+				<a class="nav-link" href="<?php echo site_url('Cashier/customer');?>">
+					<i class="fas fa-fw fa-user-tag"></i>
 					<span>Customer</span></a>
 			</li>
 
-			<!-- <li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('Admin/outlet');?>">
-					<i class="fas fa-fw fa-utensils"></i>
-					<span>Outlet</span></a>
-			</li> -->
-
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('Admin/package');?>">
-					<i class="fas fa-fw fa-utensils"></i>
-					<span>Package</span></a>
+				<a class="nav-link" href="<?php echo site_url('Cashier/transaction')?>">
+					<i class="fas fa-fw fa-shopping-cart"></i>
+					<span>Transaction</span></a>
+			</li>
+			
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo site_url('Cashier/payment')?>">
+					<i class="fas fa-fw fa-credit-card"></i>
+					<span>Payment</span></a>
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">
-					<i class="fas fa-fw fa-shopping-cart"></i>
-					<span>Transaction</span></a>
+				<a class="nav-link" href="<?php echo site_url('Cahsier/report')?>">
+					<i class="fas fa-fw fa-credit-card"></i>
+					<span>Report</span></a>
 			</li>
 
 			<!-- Divider -->
@@ -75,7 +55,7 @@
 			</div>
 
 			<li class="nav-item">
-				<a class="nav-link" href="#">
+				<a class="nav-link" href="<?php echo base_url('Auth/logout') ;?>">
 					<i class="fas fa-fw fa-sign-out-alt"></i>
 					<span>Logout</span></a>
 			</li>

@@ -47,11 +47,11 @@
 						<td>
 							<div>
 								<a href="<?php echo site_url('User/user_edit/'.$datas->id);?>">
-									<button class="btn btn-success" style="width:100%;">Edit</button></a>
+									<button class="btn btn-success btn-block">Edit</button></a>
 							</div>
 							<div class="mt-2">
 								<a href="<?php echo site_url('User/user_delete/'.$datas->id);?>">
-									<button class="btn btn-danger" style="width:100%;">Delete</button></a>
+									<button class="btn btn-danger btn-block">Delete</button></a>
 							</div>
 						</td>
 					</tr>

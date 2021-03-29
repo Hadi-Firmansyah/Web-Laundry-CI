@@ -65,7 +65,7 @@
 									'<td>' + data[i].notes + '</td>' +
 									'<td>' + data[i].total_price + '</td>' +
 									'<td class="">' + data[i].status + '</td>' +
-									'<td>' + '<a href="#modalPayment" data-toggle="modal" class="btn btn-success" onclick="payment('+ data[i].id +')">Pay</a>' + '</td>'
+									'<td>' + '<a href="#modalPayment" data-toggle="modal" class="btn btn-success btn-block" onclick="payment('+ data[i].id +')">Pay</a>' + '</td>'
 									'</tr>';
 							}
 

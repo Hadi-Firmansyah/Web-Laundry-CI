@@ -76,5 +76,14 @@ class Package extends CI_Controller{
         $where = array('id'=>$id);
         $this->model_laundry->delete_package($where, 'tb_package');
     }
+    public function package_print_xls(){
+        header('Content-Type: application / vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment;filename="All_Data_Package.xls"');
+        header('Cache-Control: max-age=0');
+
+        $data['get_packages']=$this->model_laundry->get_packages();
+        $this->load->view('package/package_preview',$data);
+
+    }
 }
 ?>
