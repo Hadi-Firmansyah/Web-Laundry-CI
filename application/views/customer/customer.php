@@ -53,7 +53,7 @@
 						dataType: 'Json',
 						success: function (data) {
 		
-							var row = '';
+					 		var row = '';
 							for (var i = 0; i < data.length; i++) {
 								row += '<tr>' +
 									'<td>' + (i+1) + '</td>' +
@@ -382,6 +382,6 @@ function initMap() {
    
  }
 </script> -->
-<!-- <script async defer
+<script async defer
 src="https://maps.googleapis.com/maps/api/js?callback=initMap">
 </script> -->

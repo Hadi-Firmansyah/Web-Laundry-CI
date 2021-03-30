@@ -42,8 +42,13 @@
 				Apps
 			</div>
 
-			<li class="nav-item">
+			<!-- <li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('Admin/customer');?>">
+					<i class="fas fa-fw fa-user-tag"></i>
+					<span>Customer</span></a>
+			</li> -->
+			<li class="nav-item">
+				<a class="nav-link" href="<?php echo site_url('Admin/customer2');?>">
 					<i class="fas fa-fw fa-user-tag"></i>
 					<span>Customer</span></a>
 			</li>
@@ -74,7 +79,7 @@
 
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('Admin/report')?>">
-					<i class="fas fa-fw fa-credit-card"></i>
+					<i class="fas fa-fw fa-file"></i>
 					<span>Report</span></a>
 			</li>
 

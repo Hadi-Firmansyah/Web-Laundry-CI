@@ -65,6 +65,23 @@ class Admin extends CI_Controller{
         $this->load->view('customer/customer',$data);
         $this->load->view('admin/templates/footer',$data);
     }
+
+    //PHP
+    public function customer2(){
+        if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') != 'Admin'){
+            redirect('Auth');
+        }else if($this->session->userdata('status_log') != 'Online'){
+            redirect('Auth');
+        }
+        $data['title'] = "Customer";
+        $data['get_customer'] = $this->model_laundry->get_customer();
+        $data['count_customer'] = $this->model_laundry->count_customer();
+        $this->load->view('admin/templates/header',$data);
+        $this->load->view('admin/templates/sidebar',$data);
+        $this->load->view('admin/templates/topbar',$data);
+        $this->load->view('customer/customer2',$data);
+        $this->load->view('admin/templates/footer',$data);
+    }
     public function package(){
         if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') != 'Admin'){
             redirect('Auth');

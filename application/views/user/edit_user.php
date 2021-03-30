@@ -4,7 +4,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-1">
     <h1 class="h2 mb-0 text-gray-800">User / <small> Edit</small></h1>
-</div>
+</div> 
 <div class="card-body">
 	<form action="<?php echo site_url('User/action_edit');?>" method="POST" enctype="multipart/form-data">
     <?php foreach($data_edit as $edit): ?>

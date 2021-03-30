@@ -64,16 +64,19 @@ Class model_laundry extends CI_Model{
     }
     //Edit Data User
     public function edit_user(){
-        $config['upload_path'] = './assets/';
-        $config['allowed_types'] = 'jpg|png|gif';
+        $config['upload_path'] = './profile/';
+        $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = '2048000';
-        $config['file'] = url_title($this->input->post('image'));
+        $config['width'] = '300';
+        $config['height'] = '300';  
+        $config['file_name'] = url_title($this->input->post('image'));
         $filename = $this->upload->file_name;
+        $this->load->library('upload', $config);
         $this->upload->initialize($config);
         $this->upload->do_upload('image');
         $data = $this->upload->data();
 
-        $id = $this->input->post('id');
+        $id= $this->input->post('id');
         $data = array(
             'id' => $id,
             'name' => $this->input->post('name'),
@@ -125,20 +128,71 @@ Class model_laundry extends CI_Model{
         $data = $this->db->get('tb_customer');
         return $data->result();
     }
-    public function get_customer($table){
+    public function get_customer1($table){
         return $this->db->get($table);
     }
-    public function save_customer($data,$table){
+
+    //PHP
+    public function get_customer(){
+        $data = $this->db->get('tb_customer');
+        return $data->result();
+    }
+    //PHP Get Jumlah Isi Dari Table CUSTOMER
+    public function count_customer(){
+        $data = $this->db->get('tb_customer');
+        return $data->num_rows();
+    }
+    public function save_customer1($data,$table){
         $this->db->insert($table, $data);
     }
-    public function get_data_customer($table, $where){
+    public function save_customer(){
+        $data = array (
+            'id' => "",
+            'name' => $this->input->post('name'),
+            'address' => $this->input->post('address'),
+            'gender' => $this->input->post('gender'),
+            'phone' => $this->input->post('phone'),
+            'latitude' => $this->input->post('latitude'),
+            'longitude' => $this->input->post('longitude'),
+
+        );
+        $this->db->insert('tb_customer',$data);
+        $this->session->set_flashdata('Message','Data has been added!');
+        redirect('Admin/customer2');
+    }
+    public function get_data_customer($id){
+        $data = $this->db->query("SELECT * FROM tb_customer WHERE id='$id'");
+        return $data -> result();
+    }
+    //PHP
+    public function edit_customer(){
+        $id = $this->input->post('id');
+        $data = array(
+            'id' => $this->input->post('id'),
+            'name' => $this->input->post('name'),
+            'address' => $this->input->post('address'),
+            'gender' => $this->input->post('gender'),
+            'phone' => $this->input->post('phone'),
+            'latitude' => $this->input->post('latitude'),
+            'longitude' => $this->input->post('longitude'),
+        );
+
+    $this->db->where('id' , $id);
+    $this->db->update('tb_customer' , $data);
+    redirect('Admin/customer2');
+    }
+    public function get_data_customer1($table, $where){
         return $this->db->get_where($table, $where);
     }
-    public function edit_customer($where, $data, $table){
+    public function edit_customer1($where, $data, $table){
         $this->db->where($where);
         $this->db->update($table, $data);
     }
-    public function delete_customer($where, $table){
+    //PHP
+    public function delete_customer($id){
+        $this->db->delete('tb_customer',array('id' => $id));
+    }
+    public function delete_customer1($where, $table){
         $this->db->where($where);
         $this->db->delete($table);
     }

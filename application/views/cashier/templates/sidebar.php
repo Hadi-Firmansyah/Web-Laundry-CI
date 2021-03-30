@@ -23,7 +23,7 @@
 			</div>
 
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('Cashier/customer');?>">
+				<a class="nav-link" href="<?php echo site_url('Cashier/customer2');?>">
 					<i class="fas fa-fw fa-user-tag"></i>
 					<span>Customer</span></a>
 			</li>
@@ -41,8 +41,8 @@
 			</li>
 
 			<li class="nav-item">
-				<a class="nav-link" href="<?php echo site_url('Cahsier/report')?>">
-					<i class="fas fa-fw fa-credit-card"></i>
+				<a class="nav-link" href="<?php echo site_url('Cashier/report_cashier')?>">
+					<i class="fas fa-fw fa-file"></i>
 					<span>Report</span></a>
 			</li>
 

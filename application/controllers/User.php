@@ -10,7 +10,7 @@ class User extends CI_Controller{
     public function user_delete($id){
         $this->model_laundry->delete_user($id);
        redirect('Admin/user');
-    }
+    } 
     public function user_edit($id){
         $data['title'] = "Edit User";
         $this->load->view('admin/templates/header',$data);

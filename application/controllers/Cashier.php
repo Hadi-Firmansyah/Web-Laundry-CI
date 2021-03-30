@@ -34,6 +34,21 @@ class Cashier extends CI_Controller{
         $this->load->view('customer/customer',$data);
         $this->load->view('cashier/templates/footer',$data);
     }
+    public function customer2(){
+        if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') != 'Cashier'){
+            redirect('Auth');
+        }else if($this->session->userdata('status_log') != 'Online'){
+            redirect('Auth');
+        }
+        $data['title'] = "Customer";
+        $data['get_customer'] = $this->model_laundry->get_customer();
+        $data['count_customer'] = $this->model_laundry->count_customer();
+        $this->load->view('cashier/templates/header',$data);
+        $this->load->view('cashier/templates/sidebar',$data);
+        $this->load->view('cashier/templates/topbar',$data);
+        $this->load->view('customer/customer2',$data);
+        $this->load->view('cashier/templates/footer',$data);
+    }
     public function transaction(){
         if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') != 'Cashier'){
             redirect('Auth');
@@ -66,6 +81,25 @@ class Cashier extends CI_Controller{
         $this->load->view('payment/payment',$data);
         $this->load->view('cashier/templates/footer',$data);
     }
+    public function report_cashier(){
+        if($this->session->userdata('status_log') == 'Online' && $this->session->userdata('role') != 'Cashier'){
+            redirect('Auth');
+        }else if($this->session->userdata('status_log') != 'Online'){
+            redirect('Auth');
+        }
+        
+        $data['count_user'] = $this->model_laundry->count_user();
+        $data['count_package'] = $this->model_laundry->count_package();
+        $data['count_transaction'] = $this->model_laundry->count_transaction();
+
+        $data['title'] = "Report";
+        $this->load->view('cashier/templates/header',$data);
+        $this->load->view('cashier/templates/sidebar',$data);
+        $this->load->view('cashier/templates/topbar',$data);
+        $this->load->view('report/report_cashier',$data);
+        $this->load->view('cashier/templates/footer',$data);
+    }
+    
     
 }
 

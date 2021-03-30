@@ -7,8 +7,13 @@ class Customer extends CI_Controller{
     function customer_show(){
         $dataCustomer = $this->model_laundry->get_customer('tb_customer')->result();
         echo json_encode($dataCustomer);
-    }
+    } 
+
+    //PHP
     function customer_save(){
+        $this->model_laundry->save_customer();
+    }
+    function customer_save1(){
         $name = $this->input->post('name');
         $address = $this->input->post('address');
         $gender = $this->input->post('gender');
@@ -47,7 +52,21 @@ class Customer extends CI_Controller{
 
         echo json_encode($data);
     }
-    function customer_edit(){
+
+    //PHP
+    function customer_edit($id){
+        $data['title'] = "Edit Customer";
+        $this->load->view('admin/templates/header',$data);
+        $data['data_edit'] = $this->model_laundry->get_data_customer($id);
+        $this->load->view('admin/templates/sidebar',$data);
+        $this->load->view('admin/templates/topbar',$data);
+        $this->load->view('customer/edit_customer',$data);
+        $this->load->view('admin/templates/footer');
+    }
+    function action_edit(){
+        $this->model_laundry->edit_customer();
+    }
+    function customer_edit1(){
         $id = $this->input->post('id');
         $name = $this->input->post('name');
         $address = $this->input->post('address');
@@ -82,7 +101,11 @@ class Customer extends CI_Controller{
         }
         echo json_encode($result);
     }
-    function customer_delete(){
+    function customer_delete($id){
+        $this->model_laundry->delete_customer($id);
+        redirect('Admin/customer2');
+    }
+    function customer_delete1(){
         $id = $this->input->post('id');
         $where = array('id'=>$id);
         $this->model_laundry->delete_customer($where, 'tb_customer');
@@ -94,6 +117,14 @@ class Customer extends CI_Controller{
         $data = $this->model_laundry->get_data_location('tb_customer', $where)->result();
 
         echo json_encode($data);  
+    }
+    function detail_location($id){
+        $data['title'] = "Detail Location";
+        $this->load->view('admin/templates/header',$data);
+        $data['data'] = $this->model_laundry->get_data_customer($id);
+        $this->load->view('admin/templates/topbar',$data);
+        $this->load->view('customer/detail_location',$data);
+        $this->load->view('admin/templates/footer');
     }
     public function customer_print_xls(){
         header('Content-Type: application / vnd.openxmlformats-officedocument.spreadsheetml.sheet');

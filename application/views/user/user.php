@@ -9,8 +9,8 @@
 			<div>
 				<button class="btn btn-primary mb-3" style="width:15%;" type="button" 
 					data-toggle="modal" data-target="#exampleModal">Add User</button>
-				<a href="<?php echo base_url("User/user_print_xls")?>">
-					<button class="btn btn-success mb-3" style="width:15%;" >Generate XLS</button></a>
+				<!-- <a href="<?php echo base_url("User/user_print_xls")?>">
+					<button class="btn btn-success mb-3" style="width:15%;" >Generate XLS</button></a> -->
 			</div>
 			<br>
 		<div class="card">

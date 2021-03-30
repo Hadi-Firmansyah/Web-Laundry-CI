@@ -24,7 +24,7 @@
 
 			<li class="nav-item">
 				<a class="nav-link" href="<?php echo site_url('Owner/report')?>">
-					<i class="fas fa-fw fa-credit-card"></i>
+					<i class="fas fa-fw fa-file"></i>
 					<span>Report</span></a>
 			</li>
 
