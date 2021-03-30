@@ -94,16 +94,18 @@
 
 			</div>
 
-			<div class="card mb-3 bg-primary" style="max-width: 100%;">
+			<div class="card mb-3 shadow" style="max-width: 100%;">
 				<div class="row no-gutters">
-					<!-- <div class="col-md-4">
-						<img src="<?php echo $this->session->userdata('image');?>" alt="User Image">
-					</div> -->
 					<div class="col-md-12">
-						<div class="card-body" style="color:white;">
+						<center><img src="<?= base_url().'profile/'.$this->session->userdata('image');?>"
+						style="width:250px;border-radius: 50%;" class="mt-4"
+						alt="User Image"></center>
+					</div>
+					<div class="col-md-12">
+						<div class="card-body">
 							<h5 class="card-title" align="center">Welcome , <?php echo $this->session->userdata('name');?></h5>
 							<p class="card-text" align="center"><?php echo $this->session->userdata('role');?></p>
-							<p class="card-text" align="center"><small><?php echo $this->session->userdata('status_log');?></small></p>
+							<p class="card-text" style="color:green;" align="center"><small><?php echo $this->session->userdata('status_log');?></small></p>
 						</div>
 					</div>
 				</div>
