@@ -22,10 +22,6 @@ class Auth extends CI_Controller {
 		$this->load->view('auth/home');
     }
     public function login(){
-        // if($this->session->userdata('status_log') == 'Online' ){
-        //     redirect("Auth");
-        // }
-        
         $data['title'] = 'Login - Laundry';
         $this->load->view('auth/login',$data);
     }

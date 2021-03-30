@@ -25,15 +25,25 @@
 			</div>
 
 			<div class="form-group">
-                <div id="map"></div>
+                <div id="mapa"></div>
+			    <div class="eventtext">
 			</div>
+<br>
+            <div class="row">
+                <div class="col-6">
+                <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">Latitude</span>
+                    <input type="text" name="latitude" id="latitude" value="<?php echo $edit->latitude; ?>" class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
+                </div>
+                </div>
 
-				<div class="form-group">
-					<td>Latitude</td>
-					<td> <input type="text" name='latitude' id="latitude" value="<?php echo $edit->latitude;?>" class="form-control" id='latitude' readonly></td>
-					<td>Longitude</td>
-					<td><input type="text" name='longitude' id="longitude" value="<?php echo $edit->longitude;?>" class="form-control" id='longitude' readonly></td>
-				</div>
+                <div class="col-6">
+                <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">Longitude</span>
+                    <input type="text" name="longitude" id="longitude" value="<?php echo $edit->longitude; ?>" class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
+                </div>
+                </div>
+            </div>
 
 				<div class="form-group">
 					<button class="btn btn-primary" type="submit">Submit</button>
@@ -42,23 +52,14 @@
 		</form>
 	</div>
     
-<style>
-		/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-		#map {
-			height: 550px;
-		}
-
-		/* Optional: Makes the sample page fill the window. */
-		html,
-		body {
-			height: 100%;
-			margin: 0;
-			padding: 0;
-		}
-
-	</style>
-<script>
+            <style type="text/css"> 
+			#mapa {
+				width: 100%;
+				height: 300px; 
+				padding: 10px;
+			}
+			</style>
+<!-- <script>
 function initMap() {
    
    // membuat objek untuk titik koordinat
@@ -100,7 +101,37 @@ function initMap() {
 </script>
 <script async defer
 src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+</script> -->
+
+<script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAA7A7Eu8gZ_mTslgWnRR9TGRQByQgPDcFg0q0wOb9u6rRtBOFyKBQD4QgfPHRxBFGL7JviJdz_jAlHfw" type="text/javascript"></script>
+ <script type="text/javascript">
+    if (GBrowserIsCompatible()) 
+    {
+        map = new GMap2(document.getElementById("mapa"));
+        map.addControl(new GLargeMapControl());
+        map.addControl(new GMapTypeControl(3));    
+        map.setCenter( new GLatLng(
+            Number(document.getElementById("latitude").value),
+            Number(document.getElementById("longitude").value),
+            ), 5,0);
+        
+        // GEvent.addListener(map,'mousemove',function(point)
+        // {
+        //     document.getElementById('latspan').innerHTML = point.lat()
+        //     document.getElementById('lngspan').innerHTML = point.lng()
+        //     // document.getElementById('latlong').innerHTML = point.lat() + ', ' + point.lng()                        
+        // });
+        
+        GEvent.addListener(map,'click',function(overlay,point)
+        {
+            // document.getElementById('latlongclicked').value = point.lat() + ', ' + point.lng()
+            document.getElementById('latitude').value = point.lat() 
+            document.getElementById('longitude').value = point.lng()
+        });
+    }
+
 </script>
+
 
 </div>
 <!-- End of Main Content -->

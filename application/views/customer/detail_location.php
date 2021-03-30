@@ -32,7 +32,7 @@
                     <input type="text" name="longitude" id="longitude" value="<?php echo $edit->longitude; ?>" class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
                 </div>
                 </div>
-                </div>
+            </div>
 				<?php endforeach; ?>
 		</form>
 	</div>
@@ -41,7 +41,7 @@
 		/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 		#map {
-			height: 550px;
+			height: 400px;
 		}
 
 		/* Optional: Makes the sample page fill the window. */

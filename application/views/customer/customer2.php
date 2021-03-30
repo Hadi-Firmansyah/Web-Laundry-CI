@@ -115,12 +115,21 @@
 												<div id="mapa"></div>
 												<div class="eventtext">
 											</div>
+											<br>
+											<div class="row">
+												<div class="col-6">
+												<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon3">Lat</span>
+													<input type="text" name="latitude" id="latitude" class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
+												</div>
+												</div>
 
-											<div class="form-group">
-											<td>Latitude</td> 
- 											<td> <input type="text" name='latitude' class="form-control" id='latitude' readonly></td>
-											<td>Longitude</td>
-											<td><input type="text" name='longitude' class="form-control" id='longitude' readonly></td>
+												<div class="col-6">
+												<div class="input-group mb-3">
+												<span class="input-group-text" id="basic-addon3">Long</span>
+													<input type="text" name="longitude" id="longitude" class="form-control" id="basic-url" aria-describedby="basic-addon3" readonly>
+												</div>
+												</div>
 											</div>
 
 											<div class="form-group">
